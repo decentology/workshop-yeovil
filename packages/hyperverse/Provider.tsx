@@ -1,36 +1,14 @@
-import React, { FC } from "react";
-import Blockchain, { BlockchainList } from "./constants/blockchains";
-import Network from "./constants/networks";
+import React, { FC, Provider, Context } from "react";
+import { BlockchainList } from "./constants/blockchains";
+import { Hyperverse } from './types';
 
-const Context = React.createContext(null);
-
-type Hyperverse = {
-  blockchain: Blockchain;
-  network: Network;
-  modules: HyperverseModule[];
-};
-
-type HyperverseModule = {
-  bundle: {
-    Provider: FC<HyperverseModuleInstance>;
-  };
-  tenantId: string;
-  network: Network;
-  blockchain: Blockchain;
-};
-
-type HyperverseModuleInstance = {
-  tenantId: string;
-  network: Network;
-  blockchain: Blockchain;
-};
+const Context = React.createContext<Hyperverse>(null);
 
 type ProviderProps = {
   hyperverse: Promise<Hyperverse>;
-}
+};
 
 const Provider: FC<ProviderProps> = (props) => {
-
   const [hyperverse, setHyperverse] = React.useState<Hyperverse>(null);
 
   React.useEffect(() => {
@@ -39,7 +17,7 @@ const Provider: FC<ProviderProps> = (props) => {
 
   if (hyperverse) {
     const blockchain = BlockchainList.find(
-      (chain) => chain == hyperverse.blockchain
+      (chain) => chain == hyperverse.blockchain.name
     );
     if (blockchain) {
       let children = props.children;
@@ -47,7 +25,7 @@ const Provider: FC<ProviderProps> = (props) => {
         children = React.createElement(
           module.bundle.Provider,
           {
-            blockchain: hyperverse.blockchain,
+            blockchain: hyperverse.blockchain.name,
             network: hyperverse.network,
             tenantId: module.tenantId,
           },
@@ -59,6 +37,6 @@ const Provider: FC<ProviderProps> = (props) => {
   } else {
     return null;
   }
-}
+};
 
 export { Context, Provider };

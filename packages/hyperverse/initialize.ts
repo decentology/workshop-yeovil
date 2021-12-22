@@ -1,9 +1,11 @@
-import { blockchains, networks} from "./constants";
+import { Hyperverse } from "./types";
 
-function initialize(options) {
-  return new Promise(async (resolve, reject) => {
-    return resolve(true);
-  });
+async function initialize<T extends Hyperverse>(options: T): Promise<T> {
+  const result = await options.blockchain.initialize(options);
+  return {
+    ...options,
+    ...result,
+  };
 }
 
 export default initialize;

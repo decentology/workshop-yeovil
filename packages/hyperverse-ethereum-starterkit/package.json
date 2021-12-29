@@ -1,0 +1,9 @@
+{
+  "name": "@hyperverse/hyperverse-ethereum-starterkit",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@hyperverse/hyperverse": "*"
+  }
+}

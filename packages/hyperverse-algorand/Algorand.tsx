@@ -5,7 +5,8 @@ import { Algodv2 } from "algosdk";
 
 export type AlgorandContext = {
   client?: Algodv2;
-  isConnected?: boolean;
+	isConnected?: boolean;
+	taco: boolean;
 };
 
 type ProviderProps = {};

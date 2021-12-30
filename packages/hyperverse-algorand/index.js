@@ -3,23 +3,16 @@ import Algorand from "./Algorand";
 import { Algodv2, Indexer } from "algosdk";
 import {
   blockchains,
-  makeHyperverseBlockchain,
   networks,
 } from "@hyperverse/hyperverse";
-export type { AlgorandContext } from "./Algorand";
-
-export type AlgorandFeatures = {
-  indexer: Indexer | null;
-};
-
-const AlgorandBlockchain = makeHyperverseBlockchain({
+const AlgorandBlockchain = {
   name: blockchains.Algorand,
-  context: useAlgorand,
-  provider: Algorand.Provider,
+  contextHook: useAlgorand,
+  Provider: Algorand.Provider,
   initialize: async (options) => {
-    let client: Algodv2 | null;
-    let explorer: string | null;
-    let indexer: Indexer | null;
+    let client;
+    let explorer;
+    let indexer;
     if (options.network == networks.MainNet) {
       client = new Algodv2("", "https://algoexplorerapi.io/", "");
       indexer = new Indexer("", "https://algoexplorerapi.io/idx2", "");
@@ -30,7 +23,7 @@ const AlgorandBlockchain = makeHyperverseBlockchain({
       explorer = "https://testnet.algoexplorer.io";
     }
     const status = await client.status().do();
-    if (status.getLastRound() > 0) {
+    if (status['last-round'] > 0) {
       return {
         client,
         explorer,
@@ -41,6 +34,6 @@ const AlgorandBlockchain = makeHyperverseBlockchain({
     }
     throw new Error("Algorand client not initialized");
   },
-});
+};
 
 export default AlgorandBlockchain;

@@ -1,19 +1,10 @@
-import React, { FC, useState, useReducer } from "react";
+import React, { useReducer } from "react";
 import { useHyperverse } from "@hyperverse/hyperverse";
 import reducer from "./reducer";
-import { Algodv2 } from "algosdk";
 
-export type AlgorandContext = {
-  client?: Algodv2;
-	isConnected?: boolean;
-	taco: boolean;
-};
+const Context = React.createContext({});
 
-type ProviderProps = {};
-
-const Context = React.createContext<AlgorandContext>({});
-
-const Provider: FC<ProviderProps> = (props) => {
+const Provider = (props) => {
   const hyperverse = useHyperverse();
   const [state, dispatch] = useReducer(reducer, {
     connector: null,
@@ -32,10 +23,9 @@ const Provider: FC<ProviderProps> = (props) => {
     signatureRequests: [],
   });
   const isConnected = state.account !== null;
-  const {} = hyperverse.blockchain;
 
   return (
-    <Context.Provider value={{ client: null, isConnected }}></Context.Provider>
+    <Context.Provider value={{ client: 'test2', isConnected }}>{props.children}</Context.Provider>
   );
 };
 

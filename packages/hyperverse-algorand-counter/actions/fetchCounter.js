@@ -1,7 +1,6 @@
 import { AlgorandContext } from "@hyperverse/hyperverse-algorand";
 
-
-async function fetchCount(props: {environment: any, algorand: AlgorandContext, account: any}) {
+async function fetchCount(props) {
   const { environment, algorand } = props;
 
   const response = await algorand.client

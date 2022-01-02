@@ -6,7 +6,6 @@ async function initialize(options) {
   return {
     ...options,
     // ...result,
-    chainConfig: null,
   };
 }
 

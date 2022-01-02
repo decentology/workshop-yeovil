@@ -6,7 +6,6 @@ Context.displayName = "AlgorandCounterContext";
 
 const Provider = ({ children, ...props }) => {
   const algorand = useAlgorand();
-  console.log("algorand", algorand);
   return (
     <Context.Provider value={{ doCounter: null }}>{children}</Context.Provider>
   );

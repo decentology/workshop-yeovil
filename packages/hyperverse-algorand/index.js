@@ -1,13 +1,10 @@
 import useAlgorand from "./useAlgorand";
-import Algorand from "./Algorand";
+import Algorand from "./Provider";
 import { Algodv2, Indexer } from "algosdk";
-import {
-  blockchains,
-  networks,
-} from "@hyperverse/hyperverse";
+import { blockchains, networks } from "@hyperverse/hyperverse";
 const AlgorandBlockchain = {
   name: blockchains.Algorand,
-  contextHook: useAlgorand,
+  context: Algorand.Context,
   Provider: Algorand.Provider,
   initialize: async (options) => {
     let client;
@@ -23,7 +20,7 @@ const AlgorandBlockchain = {
       explorer = "https://testnet.algoexplorer.io";
     }
     const status = await client.status().do();
-    if (status['last-round'] > 0) {
+    if (status["last-round"] > 0) {
       return {
         client,
         explorer,

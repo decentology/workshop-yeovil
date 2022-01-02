@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import Algorand from "./Algorand";
+import Algorand from "./Provider";
 function useAlgorand() {
   return useContext(Algorand.Context);
 }

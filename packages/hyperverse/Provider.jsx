@@ -2,13 +2,14 @@ import React from "react";
 import { BlockchainList } from "./constants/blockchains";
 
 const Context = React.createContext(null);
+Context.displayName = "HyperverseContext";
 
 const Provider = (props) => {
   const [hyperverse, setHyperverse] = React.useState(null);
 
   React.useEffect(() => {
-    props.hyperverse.then((hyperverse) => setHyperverse(hyperverse));
-  }, [props.hyperverse]);
+    props.value.then((hyperverse) => setHyperverse(hyperverse));
+  }, [props.value]);
 
   if (hyperverse) {
     const blockchainName = BlockchainList.find(
@@ -21,16 +22,7 @@ const Provider = (props) => {
         for (const module of hyperverse.modules.reverse()) {
           children = React.createElement(
             module.bundle.Provider,
-            {
-              blockchain: hyperverse.blockchain.name,
-              network: hyperverse.network,
-              tenantId: module.tenantId,
-              value: {
-                blockchain: hyperverse.blockchain.name,
-                network: hyperverse.network,
-                tenantId: module.tenantId,
-              },
-            },
+            null,
             children
           );
         }
@@ -38,22 +30,16 @@ const Provider = (props) => {
       }
 
       children = React.createElement(
+        // hyperverse.blockchain.context.Provider,
         hyperverse.blockchain.Provider,
-        {
-          blockchain: hyperverse.blockchain.name,
-          network: hyperverse.network,
-          tenantId: module.tenantId,
-          value: {
-            blockchain: hyperverse.blockchain.name,
-            network: hyperverse.network,
-            tenantId: module.tenantId,
-          },
-        },
+        null,
         renderModuleContexts(children)
       );
-      // console.log(children);
-      let blockchain = hyperverse.blockchain.context;
-      return <Context.Provider value={hyperverse}>{children}</Context.Provider>;
+      return (
+        <Context.Provider value={{ ...hyperverse }}>
+          {children}
+        </Context.Provider>
+      );
     }
   } else {
     return null;

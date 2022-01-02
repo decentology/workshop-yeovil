@@ -3,7 +3,6 @@ import * as Hyperverse from "@hyperverse/hyperverse";
 import { networks } from "@hyperverse/hyperverse";
 import Algorand from "@hyperverse/hyperverse-algorand";
 import * as Counter from "@hyperverse/hyperverse-algorand-counter";
-import useAlgorand from "@hyperverse/hyperverse-algorand/useAlgorand";
 import Inner from "../components/inner";
 
 const hyperverse = Hyperverse.initialize({
@@ -14,7 +13,7 @@ const hyperverse = Hyperverse.initialize({
 
 export default function Web() {
   return (
-    <Hyperverse.Provider hyperverse={hyperverse}>
+    <Hyperverse.Provider value={hyperverse}>
       <div>
         <h1>Web</h1>
         <Inner />

@@ -8,9 +8,7 @@ Context.displayName = "AlgorandContext";
 
 const Initialize = async (network) => {
   if (network != null) {
-    let client;
-    let explorer;
-    let indexer;
+    let client, explorer, indexer;
     if (network == networks.MainNet) {
       client = new Algodv2("", "https://algoexplorerapi.io/", "");
       indexer = new Indexer("", "https://algoexplorerapi.io/idx2", "");

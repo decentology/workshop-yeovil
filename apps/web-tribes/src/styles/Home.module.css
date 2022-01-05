@@ -188,7 +188,7 @@
 /* --------------- End of All Tribes Page ---------------- */
 
 /* ------------------- My Tribe Page ------------------- */
-.container-2 {
+.container2 {
   height: 80%;
   width: 80%;
   margin: auto;
@@ -198,7 +198,7 @@
   align-items: center;
 }
 
-.container-3 {
+.container3 {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -214,7 +214,7 @@
   margin-right: 4rem;
 }
 
-.tribe-card {
+.tribeCard {
   margin: 2.5rem 4rem 0 0;
   width: 200px;
   height: 300px;

@@ -52,6 +52,9 @@ export const useTribes = () => {
   }
   const getTribe = async (id) => {
     try {
+      if (!tribesContract) {
+        return
+      }
       const userTribeTxn = await tribesContract.getTribeData(TENANT_ADDRESS, id)
       return userTribeTxn
     } catch (err) {
@@ -113,8 +116,9 @@ export const useTribes = () => {
     Join: (options) => useMutation((id) => joinTribe(id), options),
     Leave: (options) => useMutation(() => leaveTribe(), options),
     TribeId: () =>
-      useQuery(['getTribeId', account], () => getTribeId(account), {
+      useQuery(['getTribeId', account, tribesContract?.address], () => getTribeId(account), {
         enabled: !!account,
+        enabled: !!tribesContract?.address,
       }),
     Tribe: () => {
       const { data: tribeId } = useQuery(

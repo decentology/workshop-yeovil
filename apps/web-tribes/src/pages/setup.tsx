@@ -1,11 +1,10 @@
 import { useState } from 'react'
 import { useRouter } from 'next/router'
 // @ts-ignore
-import { useTribes, useEthereum  } from '@hyperverse/hyperverse-ethereum-tribes'
+import { useTribes, useEthereum } from '@hyperverse/hyperverse-ethereum-tribes'
 import { SkynetClient } from 'skynet-js'
 import styles from '../styles/Home.module.css'
 import Loader from '../components/Loader'
-
 
 const client = new SkynetClient('https://siasky.net')
 
@@ -26,20 +25,23 @@ const Setup = () => {
   const { mutate, isLoading: isCreateInstanceLoading } = NewInstance()
   const isLoading = isLoadingAddTribe || isCreateInstanceLoading
   const { mutate: addTribe } = AddTribe({
-    onSuccess: () => { 
-      setIsLoadingAddTribe(false) 
-      console.log('success')}
+    onSuccess: () => {
+      setIsLoadingAddTribe(false)
+      console.log('success')
+    },
   })
   const addNewTribe = async () => {
     try {
       setIsLoadingAddTribe(true)
       setLoaderMessage('Uploading image...')
       const { skylink } = await client.uploadFile(imageFile!)
+
       const data = JSON.stringify({
         name: formInput.name,
         description: formInput.description,
-        image: skylink.replace('sia://', ''),
+        image: skylink.replace('sia:', ''),
       })
+
       setLoaderMessage('Uploading Metadata...')
       const { skylink: file } = await client.uploadFile(
         new File([data], 'metadata.json'),
@@ -47,9 +49,8 @@ const Setup = () => {
 
       try {
         setLoaderMessage('Intiating Transaction...')
-        addTribe(file.replace('sia://', ''))
+        addTribe(file.replace('sia:', ''))
         setLoaderMessage('Processing Transaction...')
-        
       } catch {}
     } catch {}
   }
@@ -62,18 +63,26 @@ const Setup = () => {
         <div className={styles.hero}>
           {account && !data && (
             <>
-              <button className={styles.join} type="submit" onClick={() => mutate()}>
+              <button
+                className={styles.join}
+                type="submit"
+                onClick={() => mutate()}
+              >
                 Create Instance
               </button>
               <p className={styles.error}>
-                If you already created an instance, change the Tenant in shared.ts to the
-                signer address.
+                If you already created an instance, change the Tenant in
+                shared.ts to the signer address.
               </p>
             </>
           )}
           {!account ? (
             <div className={styles.container2}>
-              <button className={styles.connect} type="submit" onClick={connectWallet}>
+              <button
+                className={styles.connect}
+                type="submit"
+                onClick={connectWallet}
+              >
                 Connect Wallet
               </button>
             </div>
@@ -100,13 +109,19 @@ const Setup = () => {
                   updateInput({ ...formInput, description: e.target.value })
                 }
               />
-              <button className={styles.join} type="submit" onClick={addNewTribe}>
+              <button
+                className={styles.join}
+                type="submit"
+                onClick={addNewTribe}
+              >
                 Add Tribe
               </button>
             </div>
           ) : (
             <div className={styles.container2}>
-              <h4 className={styles.error}>You are not the owner of this project.</h4>
+              <h4 className={styles.error}>
+                You are not the owner of this project.
+              </h4>
               <h4 className={styles.error}>
                 If you are, please use the right tenant address for this
                 project.
@@ -119,10 +134,10 @@ const Setup = () => {
             onClick={() => router.push('/')}
           >
             Home
-          </button> 
+          </button>
         </div>
       )}
     </main>
-  ) 
+  )
 }
 export default Setup

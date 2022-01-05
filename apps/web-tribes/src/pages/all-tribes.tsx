@@ -5,18 +5,16 @@ import Nav from '../components/Nav'
 import Loader from '../components/Loader'
 // @ts-ignore
 import { useTribes, useEthereum } from '@hyperverse/hyperverse-ethereum-tribes'
-  
 
 const getData = async (data: { id: number; txn: string }[]) => {
   return Promise.all(
     data.map(async ({ id, txn }) => {
-        const link = txn.replace('sia:', '')
-        console.log(link)
+      const link = txn.replace('sia:', '')
       const json = JSON.parse(
         // eslint-disable-next-line no-await-in-loop
         await (await fetch(`https://siasky.net/${link}`)).text(),
       )
-      return { id, ...json } 
+      return { id, ...json }
     }),
   )
 }
@@ -30,14 +28,14 @@ const AllTribes = () => {
   const { mutate, isLoading: joinTribeLoading } = Join({
     onSuccess: () => router.push('/my-tribe'),
   })
-  const { data } = useQuery(
+  const { data, isLoading: loadingTribeData } = useQuery(
     ['allTribes', tribeHash],
     () => getData(tribeHash!),
     {
       enabled: !!tribeHash,
     },
   )
-  const isLoading = allTribesLoading || joinTribeLoading
+  const isLoading = allTribesLoading || joinTribeLoading || loadingTribeData
 
   return (
     <main>
@@ -61,7 +59,10 @@ const AllTribes = () => {
                     <div key={item.id} onClick={() => mutate(item.id)}>
                       <img
                         className={styles.cards}
-                        src={`https://siasky.net/${item.image}/`}
+                        src={`https://siasky.net/${item.image.replace(
+                          'sia:',
+                          '',
+                        )}/`}
                         alt={item.name}
                       />
                     </div>
@@ -70,7 +71,9 @@ const AllTribes = () => {
               </>
             )
           ) : (
-            <p className={styles.error}>Please connect your wallet to join a tribe.</p>
+            <p className={styles.error}>
+              Please connect your wallet to join a tribe.
+            </p>
           )}
         </div>
       )}

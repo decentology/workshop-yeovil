@@ -6,7 +6,6 @@ import styles from '../styles/Home.module.css'
 import Nav from '../components/Nav'
 import Loader from '../components/Loader'
 
-
 const getTribeData = async (data: string) => {
   const json = JSON.parse(
     // eslint-disable-next-line no-await-in-loop
@@ -19,15 +18,19 @@ const TribesPage = () => {
   const router = useRouter()
   const { account } = useEthereum()
   const { Tribe, Leave } = useTribes()
-  const { data : tribeHash, isLoading: tribeDataLoading } = Tribe()
+  const { data: tribeHash, isLoading: tribeDataLoading } = Tribe()
   const { mutate, isLoading: leaveTribeLoading } = Leave({
     onSuccess: () => router.push('/'),
   })
 
-  const { data }  = useQuery(['tribeData', tribeHash], () => getTribeData(tribeHash!), {
-    enabled: !!tribeHash,
-  })
-  const isLoading = tribeDataLoading || leaveTribeLoading
+  const { data, isLoading: tribeDataSiaLoading } = useQuery(
+    ['tribeData', tribeHash],
+    () => getTribeData(tribeHash!),
+    {
+      enabled: !!tribeHash,
+    },
+  )
+  const isLoading = tribeDataLoading || leaveTribeLoading || tribeDataSiaLoading
 
   return (
     <main>
@@ -61,7 +64,10 @@ const TribesPage = () => {
       ) : (
         account && (
           <div className={styles.container2}>
-            <button className={styles.join} onClick={() => router.push('/all-tribes')}>
+            <button
+              className={styles.join}
+              onClick={() => router.push('/all-tribes')}
+            >
               Join a Tribe
             </button>
           </div>

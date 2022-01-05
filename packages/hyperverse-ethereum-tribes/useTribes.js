@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from 'react'
+import { useContext, useState, useEffect, useCallback } from 'react'
 import { useQuery, useMutation } from 'react-query'
 import { useEthereum } from '@hyperverse/hyperverse-ethereum'
 import { Contract, ethers } from 'ethers'
@@ -18,53 +18,76 @@ export const useTribes = () => {
     setTribesContract(contract)
   }, [setTribesContract])
 
-  const checkInstance = async (account) => {
-    try {
-      if (!tribesContract) {
-        return
+  const checkInstance = useCallback(
+    async (account) => {
+      try {
+        if (!tribesContract) {
+          return
+        }
+        const instance = await tribesContract.instance(account)
+        return instance
+      } catch (err) {
+        return false
       }
-      const instance = await tribesContract.instance(account)
-      return instance
-    } catch (err) {
-      return false
-    }
-  }
-  const createInstance = async () => {
+    },
+    [tribesContract],
+  )
+
+  const createInstance = useCallback(async () => {
     try {
       const createTxn = await tribesContract.createInstance()
       return createTxn.wait()
     } catch (err) {
       throw err
     }
-  }
-  const addTribe = async (metadata) => {
-    try {
-      const addTxn = await tribesContract.addNewTribe(metadata)
-      return addTxn.wait()
-    } catch (err) {
-      throw err
-    }
-  }
-  const getTribeId = async (account) => {
-    try {
-      const id = await tribesContract.getUserTribe(TENANT_ADDRESS, account)
-      return id.toNumber()
-    } catch (err) {
-      throw err
-    }
-  }
-  const getTribe = async (id) => {
-    try {
-      if (!tribesContract) {
-        return
+  }, [tribesContract])
+
+  const addTribe = useCallback(
+    async (metadata) => {
+      try {
+        const addTxn = await tribesContract.addNewTribe(metadata)
+        return addTxn.wait()
+      } catch (err) {
+        throw err
       }
-      const userTribeTxn = await tribesContract.getTribeData(TENANT_ADDRESS, id)
-      return userTribeTxn
-    } catch (err) {
-      throw err
-    }
-  }
-  const leaveTribe = async () => {
+    },
+    [tribesContract],
+  )
+
+  const getTribeId = useCallback(
+    async (account) => {
+      try {
+        if (!tribesContract) {
+          return
+        }
+        const id = await tribesContract.getUserTribe(TENANT_ADDRESS, account)
+        return id.toNumber()
+      } catch (err) {
+        throw err
+      }
+    },
+    [tribesContract],
+  )
+
+  const getTribe = useCallback(
+    async (id) => {
+      try {
+        if (!tribesContract) {
+          return
+        }
+        const userTribeTxn = await tribesContract.getTribeData(
+          TENANT_ADDRESS,
+          id,
+        )
+        return userTribeTxn
+      } catch (err) {
+        throw err
+      }
+    },
+    [tribesContract],
+  )
+
+  const leaveTribe = useCallback(async () => {
     try {
       const leaveTxn = await tribesContract.leaveTribe(TENANT_ADDRESS)
       await leaveTxn.wait()
@@ -72,8 +95,9 @@ export const useTribes = () => {
     } catch (err) {
       throw err
     }
-  }
-  const getAllTribes = async () => {
+  }, [tribesContract])
+
+  const getAllTribes = useCallback(async () => {
     try {
       if (!tribesContract) {
         return
@@ -92,23 +116,31 @@ export const useTribes = () => {
     } catch (err) {
       throw err
     }
-  }
-  const joinTribe = async (id) => {
-    try {
-      const joinTxn = await tribesContract.joinTribe(TENANT_ADDRESS, id)
-      return joinTxn.wait()
-    } catch (err) {
-      throw err
-    }
-  }
+  }, [tribesContract])
+
+  const joinTribe = useCallback(
+    async (id) => {
+      try {
+        const joinTxn = await tribesContract.joinTribe(TENANT_ADDRESS, id)
+        return joinTxn.wait()
+      } catch (err) {
+        throw err
+      }
+    },
+    [tribesContract],
+  )
 
   return {
     context,
     CheckInstance: () =>
-      useQuery(['checkInstance', account, tribesContract?.address], () => checkInstance(account), {
-        enabled: !!account,
-        enabled: !!tribesContract?.address,
-      }),
+      useQuery(
+        ['checkInstance', account, tribesContract?.address],
+        () => checkInstance(account),
+        {
+          enabled: !!account,
+          enabled: !!tribesContract?.address,
+        },
+      ),
     NewInstance: (options) => useMutation(createInstance, options),
     AddTribe: (options) =>
       useMutation((metadata) => addTribe(metadata), options),
@@ -119,15 +151,20 @@ export const useTribes = () => {
     Join: (options) => useMutation((id) => joinTribe(id), options),
     Leave: (options) => useMutation(() => leaveTribe(), options),
     TribeId: () =>
-      useQuery(['getTribeId', account, tribesContract?.address], () => getTribeId(account), {
-        enabled: !!account,
-        enabled: !!tribesContract?.address,
-      }),
+      useQuery(
+        ['getTribeId', account, tribesContract?.address],
+        () => getTribeId(account),
+        {
+          enabled: !!account,
+          enabled: !!tribesContract?.address,
+          retry: false,
+        },
+      ),
     Tribe: () => {
       const { data: tribeId } = useQuery(
-        ['getTribeId', account],
+        ['getTribeId', account, tribesContract?.address],
         () => getTribeId(account),
-        { enabled: !!account },
+        { enabled: !!account, enabled: !!tribesContract?.address },
       )
       return useQuery(['getTribeData', tribeId], () => getTribe(tribeId), {
         enabled: !!tribeId,

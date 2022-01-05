@@ -20,6 +20,9 @@ export const useTribes = () => {
 
   const checkInstance = async (account) => {
     try {
+      if (!tribesContract) {
+        return
+      }
       const instance = await tribesContract.instance(account)
       return instance
     } catch (err) {
@@ -87,7 +90,6 @@ export const useTribes = () => {
       }
       return tribes
     } catch (err) {
-      console.log('err', tribesContract, err)
       throw err
     }
   }
@@ -103,8 +105,9 @@ export const useTribes = () => {
   return {
     context,
     CheckInstance: () =>
-      useQuery(['checkInstance', account], () => checkInstance(account), {
+      useQuery(['checkInstance', account, tribesContract?.address], () => checkInstance(account), {
         enabled: !!account,
+        enabled: !!tribesContract?.address,
       }),
     NewInstance: (options) => useMutation(createInstance, options),
     AddTribe: (options) =>

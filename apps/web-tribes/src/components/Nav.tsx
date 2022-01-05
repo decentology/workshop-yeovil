@@ -1,9 +1,7 @@
 import Link from 'next/link'
 import styles from '../styles/Home.module.css'
 // @ts-ignore
-import {
-  useEthereum,
-} from '@hyperverse/hyperverse-ethereum-tribes'
+import { useEthereum,} from '@hyperverse/hyperverse-ethereum-tribes'
 
 const shortenHash = (
   hash: string = '',

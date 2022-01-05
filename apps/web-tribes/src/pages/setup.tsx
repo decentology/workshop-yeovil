@@ -4,7 +4,6 @@ import { useRouter } from 'next/router'
 import { useTribes, useEthereum  } from '@hyperverse/hyperverse-ethereum-tribes'
 import { SkynetClient } from 'skynet-js'
 import styles from '../styles/Home.module.css'
-import { EthereumContext } from '../context'
 import Loader from '../components/Loader'
 
 

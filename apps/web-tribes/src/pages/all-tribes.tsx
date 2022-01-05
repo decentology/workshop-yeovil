@@ -10,11 +10,13 @@ import { useTribes, useEthereum } from '@hyperverse/hyperverse-ethereum-tribes'
 const getData = async (data: { id: number; txn: string }[]) => {
   return Promise.all(
     data.map(async ({ id, txn }) => {
+        const link = txn.replace('sia:', '')
+        console.log(link)
       const json = JSON.parse(
         // eslint-disable-next-line no-await-in-loop
-        await (await fetch(`https://siasky.net/${txn}`)).text(),
+        await (await fetch(`https://siasky.net/${link}`)).text(),
       )
-      return { id, ...json }
+      return { id, ...json } 
     }),
   )
 }

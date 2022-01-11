@@ -1,17 +1,22 @@
 import { useState } from 'react'
 import { useRouter } from 'next/router'
 // @ts-ignore
-import { useTribes, useEthereum } from '@hyperverse/hyperverse-ethereum-tribes'
 import { SkynetClient } from 'skynet-js'
 import styles from '../styles/Home.module.css'
 import Loader from '../components/Loader'
+// @ts-ignore
+import { useTribes } from '@hyperverse/hyperverse-ethereum-tribes'
+import { useAccount } from 'wagmi'
+
+import Wallets from '../components/WalletModal'
 
 const client = new SkynetClient('https://siasky.net')
 
-const TENANT_ADDRESS = '0x9809ABAfe657533F4Fd409a4DDf442B093A8AEAe'
+const TENANT_ADDRESS = '0xD847C7408c48b6b6720CCa75eB30a93acbF5163D'
 const Setup = () => {
   const router = useRouter()
-  const { account, connectWallet } = useEthereum()
+  const [showModal, setShowModal] = useState(false)
+  const [{ data: account }] = useAccount()
   const { CheckInstance, NewInstance, AddTribe } = useTribes()
   const [isLoadingAddTribe, setIsLoadingAddTribe] = useState(false)
   const [loaderMessage, setLoaderMessage] = useState('Processing...')
@@ -27,7 +32,6 @@ const Setup = () => {
   const { mutate: addTribe } = AddTribe({
     onSuccess: () => {
       setIsLoadingAddTribe(false)
-      console.log('success')
     },
   })
   const addNewTribe = async () => {
@@ -80,13 +84,13 @@ const Setup = () => {
             <div className={styles.container2}>
               <button
                 className={styles.connect}
-                type="submit"
-                onClick={connectWallet}
+                onClick={() => setShowModal(true)}
               >
                 Connect Wallet
               </button>
             </div>
-          ) : account?.toLowerCase() === TENANT_ADDRESS.toLowerCase() ? (
+          ) : account.address?.toLowerCase() ===
+            TENANT_ADDRESS.toLowerCase() ? (
             <div className={styles.container2}>
               <input
                 type="text"
@@ -135,6 +139,8 @@ const Setup = () => {
           >
             Home
           </button>
+
+          {showModal && <Wallets close={() => setShowModal(false)} />}
         </div>
       )}
     </main>

@@ -4,7 +4,8 @@ import styles from '../styles/Home.module.css'
 import Nav from '../components/Nav'
 import Loader from '../components/Loader'
 // @ts-ignore
-import { useTribes, useEthereum } from '@hyperverse/hyperverse-ethereum-tribes'
+import { useTribes } from '@hyperverse/hyperverse-ethereum-tribes'
+import { useAccount } from 'wagmi'
 
 const getData = async (data: { id: number; txn: string }[]) => {
   return Promise.all(
@@ -20,7 +21,7 @@ const getData = async (data: { id: number; txn: string }[]) => {
 }
 
 const AllTribes = () => {
-  const { account } = useEthereum()
+  const [{ data: account }] = useAccount()
   const { Tribes, Join } = useTribes()
   const router = useRouter()
   const { data: tribeHash, isLoading: allTribesLoading } = Tribes()

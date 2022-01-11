@@ -1,7 +1,8 @@
 import { useRouter } from 'next/router'
 import { useQuery } from 'react-query'
 // @ts-ignore
-import { useTribes, useEthereum } from '@hyperverse/hyperverse-ethereum-tribes'
+import { useTribes } from '@hyperverse/hyperverse-ethereum-tribes'
+import { useAccount } from 'wagmi'
 import styles from '../styles/Home.module.css'
 import Nav from '../components/Nav'
 import Loader from '../components/Loader'
@@ -16,7 +17,7 @@ const getTribeData = async (data: string) => {
 
 const TribesPage = () => {
   const router = useRouter()
-  const { account } = useEthereum()
+  const [{ data: account }] = useAccount()
   const { Tribe, Leave } = useTribes()
   const { data: tribeHash, isLoading: tribeDataLoading } = Tribe()
   const { mutate, isLoading: leaveTribeLoading } = Leave({

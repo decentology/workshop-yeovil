@@ -1,18 +1,18 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { useTribes, useEthereum } from '@hyperverse/hyperverse-ethereum-tribes'
 import styles from '../styles/Home.module.css'
 import Nav from '../components/Nav'
-import Loader from '../components/Loader'
 import Footer from '../components/Footer'
+// @ts-ignore
+import { useTribes } from '@hyperverse/hyperverse-ethereum-tribes'
+import { useAccount } from 'wagmi'
 
 const Home: NextPage = () => {
   const router = useRouter()
-  const { account } = useEthereum()
+  const [{ data: account }] = useAccount()
   const { TribeId } = useTribes()
-  const { data, isLoading: tribeIdLoading } = TribeId()
-  const isLoading = tribeIdLoading
+  const { data } = TribeId()
 
   return (
     <>
@@ -26,9 +26,6 @@ const Home: NextPage = () => {
 
       <main>
         <Nav />
-        {isLoading ? (
-          <Loader loaderMessage="loading..." />
-        ) : (
           <div className={styles.hero}>
             <div className={styles.header}>
               <h1> Tribes</h1>
@@ -53,7 +50,6 @@ const Home: NextPage = () => {
               ) : null}
             </div>
           </div>
-        )}
         <Footer />
       </main>
     </>

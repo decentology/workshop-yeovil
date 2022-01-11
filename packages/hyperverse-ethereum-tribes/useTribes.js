@@ -1,112 +1,123 @@
-import { useContext, useState, useEffect, useCallback } from 'react'
-import { useQuery, useMutation } from 'react-query'
-import { useEthereum } from '@hyperverse/hyperverse-ethereum'
-import { Contract, ethers } from 'ethers'
-import ABI from './utils/Tribes.json'
-import { context, TENANT_ADDRESS } from './context'
-export const ContractABI = ABI.abi
+import { useState, useEffect, useCallback, useContext } from 'react'
+import { useQuery, useMutation, useQueryClient } from 'react-query'
+import { ethers } from 'ethers'
+import { useAccount } from 'wagmi'
+import { context, ContractABI } from './context'
 
 export const useTribes = () => {
-  const [tribesContract, setTribesContract] = useState(null)
-  const { account } = useEthereum()
-  const { contractAddress } = useContext(context)
+  const [contract, setTribesContract] = useState(null)
+  const queryClient = useQueryClient()
+  const [{ data }] = useAccount()
+  const { tenantAddress, contractAddress } = useContext(context)
+
+  const setup = async () => {
+    const signer = await data?.connector?.getSigner()
+    const ctr = new ethers.Contract(contractAddress, ContractABI, signer)
+    setTribesContract(ctr)
+  }
 
   useEffect(() => {
-    const provider = new ethers.providers.Web3Provider(window.ethereum)
-    const signer = provider.getSigner()
-    const contract = new ethers.Contract(contractAddress, ContractABI, signer)
-    setTribesContract(contract)
-  }, [setTribesContract])
+    if (!data?.connector) {
+      return
+    }
+    setup()
+  }, [data?.connector])
 
   const checkInstance = useCallback(
     async (account) => {
       try {
-        if (!tribesContract) {
+        if (!contract) {
           return
         }
-        const instance = await tribesContract.instance(account)
+        const instance = await contract.instance(account)
         return instance
       } catch (err) {
         return false
       }
     },
-    [tribesContract],
+    [contract],
   )
 
   const createInstance = useCallback(async () => {
     try {
-      const createTxn = await tribesContract.createInstance()
+      if (!contract) {
+        return
+      }
+      const createTxn = await contract.createInstance()
       return createTxn.wait()
     } catch (err) {
       throw err
     }
-  }, [tribesContract])
+  }, [contract])
 
   const addTribe = useCallback(
     async (metadata) => {
       try {
-        const addTxn = await tribesContract.addNewTribe(metadata)
+        if (!contract) {
+          return
+        }
+        const addTxn = await contract.addNewTribe(metadata)
         return addTxn.wait()
       } catch (err) {
         throw err
       }
     },
-    [tribesContract],
+    [contract],
   )
 
   const getTribeId = useCallback(
     async (account) => {
+      if (!contract) {
+        return
+      }
       try {
-        if (!tribesContract) {
-          return
-        }
-        const id = await tribesContract.getUserTribe(TENANT_ADDRESS, account)
+        const id = await contract.getUserTribe(tenantAddress, account)
         return id.toNumber()
       } catch (err) {
         throw err
       }
     },
-    [tribesContract],
+    [contract],
   )
 
   const getTribe = useCallback(
     async (id) => {
       try {
-        if (!tribesContract) {
+        if (!contract) {
           return
         }
-        const userTribeTxn = await tribesContract.getTribeData(
-          TENANT_ADDRESS,
-          id,
-        )
+        const userTribeTxn = await contract.getTribeData(tenantAddress, id)
         return userTribeTxn
       } catch (err) {
         throw err
       }
     },
-    [tribesContract],
+    [contract],
   )
 
   const leaveTribe = useCallback(async () => {
     try {
-      const leaveTxn = await tribesContract.leaveTribe(TENANT_ADDRESS)
+      if (!contract) {
+        return
+      }
+      const leaveTxn = await contract.leaveTribe(tenantAddress)
       await leaveTxn.wait()
       return leaveTxn.hash
     } catch (err) {
       throw err
     }
-  }, [tribesContract])
+  }, [contract])
 
   const getAllTribes = useCallback(async () => {
     try {
-      if (!tribesContract) {
+      if (!contract) {
         return
       }
-      const tribesData = await tribesContract.totalTribes(TENANT_ADDRESS)
+      const tribesData = await contract.totalTribes(tenantAddress)
       const tribes = []
       for (let i = 1; i <= tribesData.toNumber(); ++i) {
         // eslint-disable-next-line no-await-in-loop
-        const txn = await tribesContract.getTribeData(TENANT_ADDRESS, i)
+        const txn = await contract.getTribeData(tenantAddress, i)
         tribes.push({
           id: i,
           txn: txn,
@@ -116,55 +127,63 @@ export const useTribes = () => {
     } catch (err) {
       throw err
     }
-  }, [tribesContract])
+  }, [contract])
 
   const joinTribe = useCallback(
     async (id) => {
       try {
-        const joinTxn = await tribesContract.joinTribe(TENANT_ADDRESS, id)
+        if (!contract) {
+          return
+        }
+        const joinTxn = await contract.joinTribe(tenantAddress, id)
         return joinTxn.wait()
       } catch (err) {
         throw err
       }
     },
-    [tribesContract],
+    [contract],
   )
 
   return {
-    context,
     CheckInstance: () =>
       useQuery(
-        ['checkInstance', account, tribesContract?.address],
-        () => checkInstance(account),
+        ['checkInstance', data?.address, contract?.address],
+        () => checkInstance(data?.address),
         {
-          enabled: !!account,
-          enabled: !!tribesContract?.address,
+          enabled: !!data?.address && !!contract?.address,
         },
       ),
     NewInstance: (options) => useMutation(createInstance, options),
     AddTribe: (options) =>
       useMutation((metadata) => addTribe(metadata), options),
     Tribes: () =>
-      useQuery(['tribes', tribesContract?.address], () => getAllTribes(), {
-        enabled: !!tribesContract?.address,
+      useQuery(['tribes', contract?.address], () => getAllTribes(), {
+        enabled: !!contract?.address,
       }),
     Join: (options) => useMutation((id) => joinTribe(id), options),
-    Leave: (options) => useMutation(() => leaveTribe(), options),
+    Leave: (options) =>
+      useMutation(() => leaveTribe(), {
+        ...options,
+        onSuccess: (...args) => {
+          queryClient.clear()
+          const fn = options?.onSuccess
+          if (fn) fn(...args)
+        },
+      }),
     TribeId: () =>
       useQuery(
-        ['getTribeId', account, tribesContract?.address],
-        () => getTribeId(account),
+        ['getTribeId', data?.address, contract?.address],
+        () => getTribeId(data?.address),
         {
-          enabled: !!account,
-          enabled: !!tribesContract?.address,
+          enabled: !!data?.address && !!contract?.address,
           retry: false,
         },
       ),
     Tribe: () => {
       const { data: tribeId } = useQuery(
-        ['getTribeId', account, tribesContract?.address],
-        () => getTribeId(account),
-        { enabled: !!account, enabled: !!tribesContract?.address },
+        ['getTribeId', data?.address, contract?.address],
+        () => getTribeId(data?.address),
+        { enabled: !!data?.address && !!contract?.address },
       )
       return useQuery(['getTribeData', tribeId], () => getTribe(tribeId), {
         enabled: !!tribeId,

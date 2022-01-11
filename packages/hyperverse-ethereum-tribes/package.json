@@ -7,8 +7,9 @@
   "dependencies": {
     "@hyperverse/hyperverse": "*",
     "@hyperverse/hyperverse-ethereum": "*",
-    "react": "^17.0.2",
     "ethers": "^5.5.1",
-    "react-query": "^3.34.7"
+    "react": "^17.0.2",
+    "react-query": "^3.34.7",
+    "wagmi": "^0.0.17"
   }
 }

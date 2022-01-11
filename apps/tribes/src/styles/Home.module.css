@@ -1,7 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Inconsolata:wght@200;300;400;500&display=swap");
-
-
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200;300;400;500&display=swap');
 
 .logo {
   font-size: 2.5rem;
@@ -14,19 +12,29 @@
 }
 
 .connect {
-  font-family: "Press Start 2P";
+  font-family: 'Press Start 2P';
   cursor: pointer;
   text-transform: uppercase;
   font-size: 0.7rem;
   color: var(--color-theme-white);
   width: 12.5rem;
-  height: 2.2rem;
+  height: 2.5rem;
   background-color: blue;
   margin-left: 1.5rem;
+}
+
+.connect > span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.connect > span > h5 {
+  margin-left: 0.5rem;
 }
 
 .logout {
-  font-family: "Press Start 2P";
+  font-family: 'Press Start 2P';
   cursor: pointer;
   text-transform: uppercase;
   font-size: 0.7rem;
@@ -37,12 +45,12 @@
   margin-left: 1.5rem;
 }
 
-.logout:hover span{
+.logout:hover span {
   display: none;
 }
 
-.logout:hover:before{
-  content: "Logout" !important;
+.logout:hover:before {
+  content: 'Logout' !important;
 }
 
 .logout:hover {
@@ -50,7 +58,7 @@
 }
 
 .address {
-  font-family: "Inconsolata";
+  font-family: 'Inconsolata';
   cursor: pointer;
   text-transform: uppercase;
   font-size: 0.7rem;
@@ -83,7 +91,7 @@
 }
 
 .join {
-  font-family: "Press Start 2P";
+  font-family: 'Press Start 2P';
   cursor: pointer;
   margin-top: 1rem;
   text-transform: uppercase;
@@ -104,7 +112,7 @@
   margin-top: 1.5rem;
   color: var(--color-theme-red);
   font-size: 0.9rem;
-  font-family: "Inconsolata", monospace;
+  font-family: 'Inconsolata', monospace;
   text-transform: none;
   letter-spacing: 2px;
 }
@@ -114,7 +122,6 @@
   margin-bottom: 0.3rem;
   font-size: 0.9rem;
 }
-
 
 /* --------------- End of Tribes Main Page --------------- */
 
@@ -139,14 +146,14 @@
   color: var(--color-theme-red);
 }
 
-.allTribes  {
+.allTribes {
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
 }
 
-.allTribes  > div {
+.allTribes > div {
   overflow-x: hidden;
   margin-top: 1.5rem;
 }
@@ -242,14 +249,14 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  text-align: center;
+  align-items: center;
   border: var(--color-theme-red) dashed 2px;
   width: 100vw;
-  height: 50px;
+  height: 65px;
 }
 
 .info > p {
-  margin: 0;
+  margin: 0 0 0.5rem;
 }
 
 .info > a {
@@ -258,9 +265,19 @@
   color: var(--color-theme-white);
 }
 
+.switch {
+  font-family: 'Press Start 2P';
+  cursor: pointer;
+  text-transform: uppercase;
+  font-size: 0.5rem;
+  color: var(--color-theme-white);
+  width: 12rem;
+  height: 1.5rem;
+  background-color: red;
+
+}
+
 /* --------------- End of Footer ---------------- */
-
-
 
 /* ------------------- Spinner ------------------- */
 .loader {
@@ -294,8 +311,75 @@
     top: 8px;
     height: 64px;
   }
-  50%, 100% {
+  50%,
+  100% {
     top: 24px;
     height: 32px;
   }
+}
+
+/* --------------- End of Spinner ---------------- */
+
+/* ------------------- Modal Wallet ------------------- */
+
+.modal {
+  background-color: rgba(41, 41, 41, 0.8);
+  display: block;
+  position: fixed;
+  z-index: 1;
+  padding: 35vh 0;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+
+}
+.modalContent {
+  margin: auto;
+  padding: 1rem;
+  width: 400px;
+  background-color: rgb(4, 1, 1);
+}
+@media screen and (max-width: 600px) {
+  .modal{
+    width: 500px;
+  }
+
+  .modalContent{
+    margin: auto;
+    padding:0.5rem;
+    width: 500px;
+    max-width: fit-content;
+  }
+}
+
+.closeModal {
+  background-color: transparent;
+  border: none;
+  float: right;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: white;
+  
+}
+
+.closeModal:hover {
+  color: #ff5a60;
+  cursor: pointer;
+}
+
+.modalContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1rem 0 0.5rem;
+}
+
+.modalContainer > button {
+  margin-bottom: 0.5rem;
+}
+
+
+.switch {
+  
 }

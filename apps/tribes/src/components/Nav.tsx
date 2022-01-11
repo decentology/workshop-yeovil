@@ -1,8 +1,9 @@
 import Link from 'next/link'
 import styles from '../styles/Home.module.css'
 // @ts-ignore
-import { useEthereum,} from '@hyperverse/hyperverse-ethereum-tribes'
-
+import { useState } from 'react'
+import { useAccount } from 'wagmi'
+import Wallets from './WalletModal'
 const shortenHash = (
   hash: string = '',
   charLength: number = 6,
@@ -21,7 +22,9 @@ const shortenHash = (
 }
 
 const Nav = () => {
-  const { account, connectWallet, logout } = useEthereum()
+  const [showModal, setShowModal] = useState(false)
+  const [{ data }, disconnect] = useAccount()
+
   return (
     <nav>
       <Link href="/" passHref>
@@ -37,20 +40,17 @@ const Nav = () => {
           </a>
         </Link>
 
-        {!account ? (
-          <button
-            className={styles.connect}
-            onClick={() => {
-              connectWallet()
-            }}
-          >
+        {!data ? (
+          <button className={styles.connect} onClick={() => setShowModal(true)}>
             Connect Wallet
           </button>
         ) : (
-          <button className={styles.logout} onClick={logout}>
-            <span>{shortenHash(account, 5, 5)}</span>
+          <button className={styles.logout} onClick={disconnect}>
+            <span>{shortenHash(data?.address, 5, 5)}</span>
           </button>
         )}
+
+        {showModal && <Wallets close={() => setShowModal(false)} />}
       </div>
     </nav>
   )

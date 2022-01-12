@@ -1,39 +1,25 @@
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
-import {
-  WalletConnectConnector,
-  defaultChains,
-  InjectedConnector,
-  Provider,
-  //@ts-ignore
-} from '@hyperverse/hyperverse-ethereum-tribes'
+//@ts-ignore
+import * as Hyperverse from "@hyperverse/hyperverse"
+//@ts-ignore
+import { networks } from "@hyperverse/hyperverse";
+//@ts-ignore
+import Ethereum from "@hyperverse/hyperverse-ethereum"
+//@ts-ignore
+import * as Tribes from "@hyperverse/hyperverse-ethereum-tribes"
 
-const infuraId = process.env.NEXT_PUBLIC_ALCHEMY_API_KEY!
-
-// Chains for connectors to support
-const chains = defaultChains
-type Config = { chainId?: number }
-
-const connectors = ({ chainId }: Config) => {
-  return [
-    new InjectedConnector({ chains }),
-    new WalletConnectConnector({
-      options: {
-        infuraId,
-        qrcode: true,
-        rpc: {
-          1: `https://rinkeby.infura.io/v3/${infuraId}`,
-        },
-      },
-    }),
-  ]
-}
+const hyperverse = Hyperverse.initialize({
+  blockchain: Ethereum,
+  network: networks.TestNet,
+  modules: [{ bundle: Tribes }],
+})
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <Provider connectors={connectors}>
+    <Hyperverse.Provider value={hyperverse}>
       <Component {...pageProps} />
-    </Provider>
+    </Hyperverse.Provider>
   )
 }
 

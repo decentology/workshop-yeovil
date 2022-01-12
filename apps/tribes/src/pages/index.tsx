@@ -6,7 +6,7 @@ import Nav from '../components/Nav'
 import Footer from '../components/Footer'
 // @ts-ignore
 import { useTribes } from '@hyperverse/hyperverse-ethereum-tribes'
-import { useAccount } from 'wagmi'
+import { useAccount } from '@hyperverse/hyperverse-ethereum'
 
 const Home: NextPage = () => {
   const router = useRouter()

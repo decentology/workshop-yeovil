@@ -1,68 +1,38 @@
-import React, {
-  useState,
-  createContext,
-  useEffect,
-  useCallback,
-} from 'react'
+import React from 'react'
+import {
+  WalletConnectConnector,
+  defaultChains,
+  InjectedConnector,
+  Provider as WagmiProvider,
+} from 'wagmi'
+const Context = React.createContext({});
+Context.displayName = 'EthereumContext';
 
-export const Context = createContext({ account: null, connectWallet: () => {}, chainId: null, logout: () => {} })
-Context.displayName = 'EthereumProvider'
-const Provider = ({ children }) => {
-  const [account, setAccount] = useState(null)
-  const [chainId, setChainId] = useState(null)
+function Provider({ children, ...props }) {
+  const infuraId = props.infuraId || 'fb9f66bab7574d70b281f62e19c27d49'
 
-  const connectWallet = useCallback(async () => {
-    try {
-      const { ethereum } = window
+  // Chains for connectors to support
+  const chains = defaultChains
 
-      if (!ethereum) {
-        alert('Connect Your Metamask!')
-        return
-      }
-
-      setChainId(ethereum.networkVersion)
-
-      const accounts = await ethereum.request({
-        method: 'eth_requestAccounts',
-      })
-
-      console.log('Connected', accounts[0])
-      setAccount(accounts[0])
-    } catch (error) {
-      console.log(error)
-    }
-  }, [])
-
-  // Accounts changed
-  useEffect(() => {
-    window.ethereum.on('accountsChanged', (a) => setAccount(a[0]))
-
-    return () => {
-      window.ethereum.removeListener('accountsChanged', (a) => setAccount(a[0]))
-    }
-  }, [])
-
-  // Chains changed
-  useEffect(() => {
-    window.ethereum.on('networkChanged', (a) => setChainId(a))
-
-    return () => {
-      window.ethereum.removeListener('networkChanged', (a) => setChainId(a))
-    }
-  }, [])
-
-  const logout = useCallback(() => {
-    setAccount(null)
-    setChainId(null)
-  }, [])
-
+  const connectors = ({ chainId }) => {
+    return [
+      new InjectedConnector({ chains }),
+      new WalletConnectConnector({
+        options: {
+          infuraId,
+          qrcode: true,
+          rpc: {
+            1: `https://rinkeby.infura.io/v3/${infuraId}`,
+          },
+        },
+      }),
+    ]
+  }
   return (
-    <Context.Provider
-      value={{ account, connectWallet, chainId, logout }}
-    >
-      {children}
+    <Context.Provider>
+      <WagmiProvider connectors={connectors}>{children}</WagmiProvider>
     </Context.Provider>
-  )
+    )
 }
 
-export default { Context, Provider }
+export default { Context, Provider };

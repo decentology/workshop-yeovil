@@ -2,7 +2,7 @@ import { useRouter } from 'next/router'
 import { useQuery } from 'react-query'
 // @ts-ignore
 import { useTribes } from '@hyperverse/hyperverse-ethereum-tribes'
-import { useAccount } from 'wagmi'
+import { useAccount } from '@hyperverse/hyperverse-ethereum'
 import styles from '../styles/Home.module.css'
 import Nav from '../components/Nav'
 import Loader from '../components/Loader'

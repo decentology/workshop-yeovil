@@ -5,6 +5,7 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "react": "^17.0.2"
+    "react": "^17.0.2",
+    "wagmi": "^0.1.3"
   }
 }

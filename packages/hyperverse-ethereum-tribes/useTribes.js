@@ -1,14 +1,13 @@
-import { useState, useEffect, useCallback, useContext } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { useQuery, useMutation, useQueryClient } from 'react-query'
 import { ethers } from 'ethers'
-import { useAccount } from 'wagmi'
-import { context, ContractABI } from './context'
+import { useAccount } from '@hyperverse/hyperverse-ethereum'
+import { ContractABI, tenantAddress, contractAddress } from './Provider'
 
 export const useTribes = () => {
   const [contract, setTribesContract] = useState(null)
   const queryClient = useQueryClient()
   const [{ data }] = useAccount()
-  const { tenantAddress, contractAddress } = useContext(context)
 
   const setup = async () => {
     const signer = await data?.connector?.getSigner()

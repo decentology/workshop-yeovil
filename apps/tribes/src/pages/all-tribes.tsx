@@ -5,7 +5,7 @@ import Nav from '../components/Nav'
 import Loader from '../components/Loader'
 // @ts-ignore
 import { useTribes } from '@hyperverse/hyperverse-ethereum-tribes'
-import { useAccount } from 'wagmi'
+import { useAccount } from '@hyperverse/hyperverse-ethereum'
 
 const getData = async (data: { id: number; txn: string }[]) => {
   return Promise.all(

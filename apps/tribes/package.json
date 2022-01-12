@@ -17,6 +17,8 @@
     "react-query": "^3.34.7",
     "skynet-js": "^3.0.2",
     "wagmi": "^0.0.17",
+    "@hyperverse/hyperverse": "*",
+    "@hyperverse/hyperverse-ethereum": "*",
     "@hyperverse/hyperverse-ethereum-tribes": "*"
   },
   "devDependencies": {

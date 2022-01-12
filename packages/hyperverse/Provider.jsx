@@ -17,7 +17,7 @@ const Provider = (props) => {
     props.value.then((hyperverse) => setHyperverse(hyperverse));
   }, [props.value]);
 
-  if (hyperverse) {
+  if (hyperverse?.blockchain) {
     const blockchainName = BlockchainList.find(
       (chain) => chain == hyperverse?.blockchain?.name
     );

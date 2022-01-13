@@ -17,7 +17,7 @@ const Provider = ({ children }) => {
   const ethereum = useEthereum()
   return (
     <QueryClientProvider client={client}>
-      <Context.Provider>{children}</Context.Provider>
+      <Context.Provider value={{}}>{children}</Context.Provider>
     </QueryClientProvider>
   )
 }

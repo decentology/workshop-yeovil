@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from 'react'
 import { useQuery, useMutation, useQueryClient } from 'react-query'
 import { ethers } from 'ethers'
 import { useAccount } from '@hyperverse/hyperverse-ethereum'
-import { ContractABI, tenantAddress, contractAddress } from './Provider'
+import { ContractABI, TENANT_ADDRESS, CONTRACT_ADDRESS } from './Provider'
 
 export const useTribes = () => {
   const [contract, setTribesContract] = useState(null)
@@ -11,7 +11,7 @@ export const useTribes = () => {
 
   const setup = async () => {
     const signer = await data?.connector?.getSigner()
-    const ctr = new ethers.Contract(contractAddress, ContractABI, signer)
+    const ctr = new ethers.Contract(CONTRACT_ADDRESS, ContractABI, signer)
     setTribesContract(ctr)
   }
 
@@ -70,7 +70,7 @@ export const useTribes = () => {
         return
       }
       try {
-        const id = await contract.getUserTribe(tenantAddress, account)
+        const id = await contract.getUserTribe(TENANT_ADDRESS, account)
         return id.toNumber()
       } catch (err) {
         throw err
@@ -85,7 +85,7 @@ export const useTribes = () => {
         if (!contract) {
           return
         }
-        const userTribeTxn = await contract.getTribeData(tenantAddress, id)
+        const userTribeTxn = await contract.getTribeData(TENANT_ADDRESS, id)
         return userTribeTxn
       } catch (err) {
         throw err
@@ -99,7 +99,7 @@ export const useTribes = () => {
       if (!contract) {
         return
       }
-      const leaveTxn = await contract.leaveTribe(tenantAddress)
+      const leaveTxn = await contract.leaveTribe(TENANT_ADDRESS)
       await leaveTxn.wait()
       return leaveTxn.hash
     } catch (err) {
@@ -112,11 +112,11 @@ export const useTribes = () => {
       if (!contract) {
         return
       }
-      const tribesData = await contract.totalTribes(tenantAddress)
+      const tribesData = await contract.totalTribes(TENANT_ADDRESS)
       const tribes = []
       for (let i = 1; i <= tribesData.toNumber(); ++i) {
         // eslint-disable-next-line no-await-in-loop
-        const txn = await contract.getTribeData(tenantAddress, i)
+        const txn = await contract.getTribeData(TENANT_ADDRESS, i)
         tribes.push({
           id: i,
           txn: txn,
@@ -134,7 +134,7 @@ export const useTribes = () => {
         if (!contract) {
           return
         }
-        const joinTxn = await contract.joinTribe(tenantAddress, id)
+        const joinTxn = await contract.joinTribe(TENANT_ADDRESS, id)
         return joinTxn.wait()
       } catch (err) {
         throw err

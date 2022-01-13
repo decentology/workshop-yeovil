@@ -5313,14 +5313,6 @@ wagmi-private@0.0.17:
     "@ethersproject/providers" "^5.5.1"
     eventemitter3 "^4.0.7"
 
-wagmi-private@0.1.2:
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/wagmi-private/-/wagmi-private-0.1.2.tgz#6518ab34207c98d36ed0637c606bb95b9fc04fbc"
-  integrity sha512-T7ne9nbQ73ayFX2r3bvR6f/dONFOyecZeEtHJsPUr50NHfmjkXyKP/nBEVPShKeUPF9R2Gmu4hKAnTO+MdN3Kg==
-  dependencies:
-    "@ethersproject/providers" "^5.5.1"
-    eventemitter3 "^4.0.7"
-
 wagmi@^0.0.17:
   version "0.0.17"
   resolved "https://registry.yarnpkg.com/wagmi/-/wagmi-0.0.17.tgz#3a831b226d14b26df63d7bc8ec6b838deb13e9e2"
@@ -5329,16 +5321,6 @@ wagmi@^0.0.17:
     "@ethersproject/providers" "^5.5.1"
     "@walletconnect/ethereum-provider" "^1.6.6"
     wagmi-private "0.0.17"
-    walletlink "^2.2.8"
-
-wagmi@^0.1.3:
-  version "0.1.3"
-  resolved "https://registry.yarnpkg.com/wagmi/-/wagmi-0.1.3.tgz#d14a4b58841b628ce8b3fc2e83c8139feaeb184f"
-  integrity sha512-8tO72ElC745CRxEO9YiPBqiihhJDOMlcYVKmjkEb4/FjrNgODdaJyV4fwXQlhTd5MAiRXits6l8FMmpM/X3M0g==
-  dependencies:
-    "@ethersproject/providers" "^5.5.1"
-    "@walletconnect/ethereum-provider" "^1.6.6"
-    wagmi-private "0.1.2"
     walletlink "^2.2.8"
 
 walletlink@^2.2.8:

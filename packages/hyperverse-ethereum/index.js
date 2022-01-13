@@ -1,4 +1,4 @@
-// export * from 'wagmi'
+export * from 'wagmi'
 import Ethereum from './Provider'
 import { blockchains, networks } from '@hyperverse/hyperverse'
 

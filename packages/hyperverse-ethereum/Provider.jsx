@@ -29,7 +29,7 @@ function Provider({ children, ...props }) {
     ]
   }
   return (
-    <Context.Provider>
+    <Context.Provider value={{}}>
       <WagmiProvider connectors={connectors}>{children}</WagmiProvider>
     </Context.Provider>
     )

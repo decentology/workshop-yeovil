@@ -3,9 +3,10 @@ import { useQuery, useMutation, useQueryClient } from 'react-query'
 import { ethers } from 'ethers'
 import { useAccount } from '@hyperverse/hyperverse-ethereum'
 import { ContractABI, TENANT_ADDRESS, CONTRACT_ADDRESS } from './Provider'
+import { useEvent } from 'react-use'
 
 export const useTribes = () => {
-  const [contract, setTribesContract] = useState(null)
+  const [contract, setTribesContract] = useState({})
   const queryClient = useQueryClient()
   const [{ data }] = useAccount()
 
@@ -143,7 +144,15 @@ export const useTribes = () => {
     [contract],
   )
 
+  //enum + wrapper function maybe
+  const useTribeEvents = (eventName, callback) => {
+    console.log('joe', contract)
+    return useEvent(eventName, useCallback(callback, [contract]), contract)
+  } 
+
   return {
+    contract,
+    useTribeEvents,
     CheckInstance: () =>
       useQuery(
         ['checkInstance', data?.address, contract?.address],

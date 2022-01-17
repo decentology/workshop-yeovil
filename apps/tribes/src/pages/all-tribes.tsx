@@ -6,6 +6,8 @@ import Loader from '../components/Loader'
 // @ts-ignore
 import { useTribes } from '@hyperverse/hyperverse-ethereum-tribes'
 import { useAccount } from '@hyperverse/hyperverse-ethereum'
+import { useCallback } from 'react'
+import { Contract } from 'ethers'
 
 const getData = async (data: { id: number; txn: string }[]) => {
   return Promise.all(
@@ -22,7 +24,7 @@ const getData = async (data: { id: number; txn: string }[]) => {
 
 const AllTribes = () => {
   const [{ data: account }] = useAccount()
-  const { Tribes, Join } = useTribes()
+  const { Tribes, Join, useTribeEvents, contract } = useTribes()
   const router = useRouter()
   const { data: tribeHash, isLoading: allTribesLoading } = Tribes()
 
@@ -37,6 +39,11 @@ const AllTribes = () => {
     },
   )
   const isLoading = allTribesLoading || joinTribeLoading || loadingTribeData
+
+  //sus
+  useTribeEvents('JoinedTribe', (x) => {
+    console.log('bob',x)
+  })
 
   return (
     <main>

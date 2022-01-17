@@ -10,9 +10,9 @@ import { useAccount } from '@hyperverse/hyperverse-ethereum'
 
 const Home: NextPage = () => {
   const router = useRouter()
-  const [{ data: account }] = useAccount()
+  const [{ data: account, error: accountErr }] = useAccount()
   const { TribeId } = useTribes()
-  const { data } = TribeId()
+  const { data, error: tribeIdErr } = TribeId()
 
   return (
     <>

@@ -14,6 +14,7 @@
     "react-dom": "17.0.2",
     "ui": "*",
     "@hyperverse/hyperverse": "*",
+    "@hyperverse/hyperverse-db": "*",
     "@hyperverse/hyperverse-algorand": "*",
     "@hyperverse/hyperverse-algorand-counter": "*"
 

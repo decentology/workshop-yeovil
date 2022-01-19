@@ -1,0 +1,13 @@
+{
+  "name": "@hyperverse/hyperverse-db",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "gun": "^0.2020.1235",
+    "react": "^17.0.2",
+    "react-query": "^3.34.8",
+    "react-use": "^17.3.2"
+  }
+}

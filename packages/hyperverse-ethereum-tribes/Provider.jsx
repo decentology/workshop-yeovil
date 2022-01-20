@@ -8,7 +8,7 @@ const Context = createContext({})
 Context.displayName = 'EthereumTribesContext'
 
 export const ContractABI = ABI.abi
-export const CONTRACT_ADDRESS = '0x0d3a67ea4c7AC49dB4AC0DefFe44Cf5905329383'
+export const CONTRACT_ADDRESS = '0xB58253d0F33ac34312949d450f1ec82FD87d92Ce'
 export const TENANT_ADDRESS = '0xD847C7408c48b6b6720CCa75eB30a93acbF5163D'
 
 Context.displayName = 'EthereumTribesContext'

@@ -144,7 +144,6 @@ export const useTribes = () => {
     [contract],
   )
 
-  //enum + wrapper function maybe
   const useTribeEvents = (eventName, callback) => {
     console.log('joe', contract)
     return useEvent(eventName, useCallback(callback, [contract]), contract)

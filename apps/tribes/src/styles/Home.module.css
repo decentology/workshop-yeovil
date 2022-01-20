@@ -1,0 +1,385 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200;300;400;500&display=swap');
+
+.logo {
+  font-size: 2.5rem;
+}
+
+.rightNav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.connect {
+  font-family: 'Press Start 2P';
+  cursor: pointer;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  color: var(--color-theme-white);
+  width: 12.5rem;
+  height: 2.5rem;
+  background-color: blue;
+  margin-left: 1.5rem;
+}
+
+.connect > span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.connect > span > h5 {
+  margin-left: 0.5rem;
+}
+
+.logout {
+  font-family: 'Press Start 2P';
+  cursor: pointer;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  color: var(--color-theme-white);
+  width: 12.5rem;
+  height: 2.2rem;
+  background-color: blue;
+  margin-left: 1.5rem;
+}
+
+.logout:hover span {
+  display: none;
+}
+
+.logout:hover:before {
+  content: 'Logout' !important;
+}
+
+.logout:hover {
+  background-color: red;
+}
+
+.address {
+  font-family: 'Inconsolata';
+  cursor: pointer;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  color: var(--color-theme-white);
+  width: 12.5rem;
+  height: 2.2rem;
+  background-color: blue;
+  margin-left: 1.5rem;
+}
+/* --------------- End of Navbar --------------- */
+
+.hero {
+  max-width: 1500px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: calc(100vh - 8rem);
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  text-transform: uppercase;
+  letter-spacing: 0.5rem;
+  font-size: 2.5rem;
+}
+
+.join {
+  font-family: 'Press Start 2P';
+  cursor: pointer;
+  margin-top: 1rem;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  color: var(--color-theme-white);
+  width: 12.5rem;
+  height: 2.2rem;
+  background: rgb(180, 58, 58);
+  background: linear-gradient(
+    0deg,
+    rgba(253, 29, 29, 100) 70%,
+    rgba(180, 58, 58, 100) 85%,
+    rgba(255, 255, 255, 100) 100%
+  );
+}
+
+.error {
+  margin-top: 1.5rem;
+  color: var(--color-theme-red);
+  font-size: 0.9rem;
+  font-family: 'Inconsolata', monospace;
+  text-transform: none;
+  letter-spacing: 2px;
+}
+
+.error > p {
+  text-align: center;
+  margin-bottom: 0.3rem;
+  font-size: 0.9rem;
+}
+
+/* --------------- End of Tribes Main Page --------------- */
+
+/* ------------------- All Tribes Page ------------------- */
+.container {
+  height: 85%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.container > h1 {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 2rem;
+}
+
+.container > a {
+  margin-top: 8rem;
+  font-size: 0.9rem;
+  color: var(--color-theme-red);
+}
+
+.allTribes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.allTribes > div {
+  overflow-x: hidden;
+  margin-top: 1.5rem;
+}
+
+.cards {
+  cursor: pointer;
+  width: 200px;
+  height: 290px;
+  overflow: hidden;
+}
+
+.cards:hover {
+  transform: scale(1.03);
+  transition: transform 0.2s;
+  overflow: hidden;
+}
+
+.tribe-name {
+  cursor: pointer;
+  width: 200px;
+  height: 290px;
+  border: 2px solid var(--color-theme-white);
+  border-radius: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(1px 5px 3px indigo);
+  margin-right: 2rem;
+}
+
+.tribe-name:hover {
+  transform: scale(1.02);
+  transition: transform 0.2s;
+}
+
+.tribe-name > h2 {
+  font-size: 1rem;
+}
+/* --------------- End of All Tribes Page ---------------- */
+
+/* ------------------- My Tribe Page ------------------- */
+.container2 {
+  height: 80%;
+  width: 80%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.container3 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  height: 100%;
+}
+
+.tribe {
+  width: 15rem;
+  height: auto;
+  margin-top: 2.5rem;
+  margin-right: 4rem;
+}
+
+.tribeCard {
+  margin: 2.5rem 4rem 0 0;
+  width: 200px;
+  height: 300px;
+  border: 2px solid var(--color-theme-white);
+  border-radius: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(1px 5px 3px indigo);
+}
+
+.text {
+  font-size: 1.5rem;
+}
+.description {
+  color: var(--color-theme-white);
+  font-size: 1.2rem;
+}
+
+/* --------------- End of My Tribe Page ---------------- */
+
+/* ------------------- Footer -------------------- */
+
+.info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: var(--color-theme-red) dashed 2px;
+  width: 100vw;
+  height: 65px;
+}
+
+.info > p {
+  margin: 0 0 0.5rem;
+}
+
+.info > a {
+  text-decoration: underline;
+  cursor: pointer;
+  color: var(--color-theme-white);
+}
+
+.switch {
+  font-family: 'Press Start 2P';
+  cursor: pointer;
+  text-transform: uppercase;
+  font-size: 0.5rem;
+  color: var(--color-theme-white);
+  width: 12rem;
+  height: 1.5rem;
+  background-color: red;
+
+}
+
+/* --------------- End of Footer ---------------- */
+
+/* ------------------- Spinner ------------------- */
+.loader {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.loader div {
+  display: inline-block;
+  position: absolute;
+  left: 8px;
+  width: 18px;
+  background: #fff;
+  animation: loader 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+}
+.loader div:nth-child(1) {
+  left: 8px;
+  animation-delay: -0.24s;
+}
+.loader div:nth-child(2) {
+  left: 32px;
+  animation-delay: -0.12s;
+}
+.loader div:nth-child(3) {
+  left: 56px;
+  animation-delay: 0;
+}
+@keyframes loader {
+  0% {
+    top: 8px;
+    height: 64px;
+  }
+  50%,
+  100% {
+    top: 24px;
+    height: 32px;
+  }
+}
+
+/* --------------- End of Spinner ---------------- */
+
+/* ------------------- Modal Wallet ------------------- */
+
+.modal {
+  background-color: rgba(41, 41, 41, 0.8);
+  display: block;
+  position: fixed;
+  z-index: 1;
+  padding: 35vh 0;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+
+}
+.modalContent {
+  margin: auto;
+  padding: 1rem;
+  width: 400px;
+  background-color: rgb(4, 1, 1);
+}
+@media screen and (max-width: 600px) {
+  .modal{
+    width: 500px;
+  }
+
+  .modalContent{
+    margin: auto;
+    padding:0.5rem;
+    width: 500px;
+    max-width: fit-content;
+  }
+}
+
+.closeModal {
+  background-color: transparent;
+  border: none;
+  float: right;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: white;
+  
+}
+
+.closeModal:hover {
+  color: #ff5a60;
+  cursor: pointer;
+}
+
+.modalContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1rem 0 0.5rem;
+}
+
+.modalContainer > button {
+  margin-bottom: 0.5rem;
+}
+
+
+.switch {
+  
+}

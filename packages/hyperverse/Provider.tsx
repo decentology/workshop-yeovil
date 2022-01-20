@@ -25,6 +25,7 @@ const Provider: FC<ProviderProps> = (props) => {
   React.useEffect(() => {
     props.value?.then((hyperverse) => setHyperverse(hyperverse));
   }, [props.value]);
+
   if (hyperverse?.blockchain) {
     const blockchainName = BlockchainList.find(
       (chain) => chain == hyperverse?.blockchain?.name

@@ -1,0 +1,88 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inconsolata:wght@200;300;400;500&display=swap");
+
+:root {
+  --color-theme-black: #0e0d0d;
+  --color-theme-white: #f0f0f0;
+  --color-theme-red: #eeffa3;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  overflow-y: hidden;
+}
+
+html,
+body {
+  font-family: "Press Start 2P";
+  background-color: var(--color-theme-black);
+  color: var(--color-theme-white);
+}
+
+/* ------------------- Tribes Main Page ------------------- */
+main {
+  margin: auto;
+  max-width: 1900px;
+  height: 100vh;
+  padding: 2rem 2rem;
+}
+
+/* ------------------- Navbar ------------------- */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: auto;
+  max-width: 1500px;
+}
+
+
+
+nav > a {
+  font-size: 0.9rem;
+}
+
+a {
+  text-decoration: underline;
+  cursor: pointer;
+  color: var(--color-theme-white);
+
+  padding-top: 0.2rem;
+}
+
+p {
+  margin-top: 1.5rem;
+  color: var(--color-theme-red);
+  font-family: "Inconsolata", monospace;
+  text-transform: none;
+  letter-spacing: 2px;
+}
+
+/* ------------------- Setup Page ------------------- */
+input {
+  font-family: "Inconsolata", monospace;
+  border: 0.5px dashed var(--color-theme-white);
+  background-color: transparent;
+  width: 30%;
+  margin: 0.4rem 0;
+  padding: 0.6rem 0.4rem;
+  color: var(--color-theme-white);
+  font-size: 1rem;
+}
+
+input:focus {
+  outline: none;
+  border: 0.5px dashed var(--color-theme-red);
+}
+
+/* --------------- End of Setup Page ---------------- */
+
+footer {
+  margin-top: -2rem;
+  display: flex;
+  flex-direction: row-reverse;
+  font-family: "Inconsolata", monospace;
+  height: 300px;
+  padding: 0 1rem;
+}

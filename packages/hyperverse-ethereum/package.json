@@ -1,0 +1,11 @@
+{
+  "name": "@hyperverse/hyperverse-ethereum",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "react": "^17.0.2",
+    "wagmi": "^0.0.17"
+  }
+}

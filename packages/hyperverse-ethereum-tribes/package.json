@@ -1,0 +1,27 @@
+{
+  "name": "@hyperverse/hyperverse-ethereum-tribes",
+  "version": "1.0.0",
+  "module": "dist/index.js",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "test": "hardhat test"
+  },
+  "dependencies": {
+    "@hyperverse/hyperverse": "*",
+    "@hyperverse/hyperverse-ethereum": "*",
+    "@openzeppelin/contracts": "^4.4.2",
+    "react": "^17.0.2",
+    "react-query": "^3.34.7",
+    "react-use": "^17.3.2",
+    "wagmi": "^0.0.17"
+  },
+  "devDependencies": {
+    "@nomiclabs/hardhat-ethers": "^2.0.4",
+    "@nomiclabs/hardhat-waffle": "^2.0.2",
+    "chai": "^4.3.4",
+    "ethereum-waffle": "^3.4.0",
+    "ethers": "^5.5.3",
+    "hardhat": "^2.8.3"
+  }
+}

@@ -16,7 +16,7 @@ export type HyperverseBlockchainInit<T> = (
 export type HyperverseBlockchain<T> = {
   name: Blockchain;
   context: () => any;
-  provider: FC<any>;
+  Provider: FC<any>;
   initialize: HyperverseBlockchainInit<T>;
 };
 
@@ -31,19 +31,21 @@ export type BlockchainFeatures2<T extends {}> = T & {
 };
 
 export type Hyperverse = {
-  blockchain: HyperverseBlockchain<unknown>;
+  blockchain: HyperverseBlockchain<unknown> | null;
   network: Network;
-  modules: HyperverseModule[];
+  modules: HyperverseModuleBase[];
 };
-
-export type HyperverseModule = {
+export type HyperverseModuleBase = {
   bundle: {
     Provider: FC<HyperverseModuleInstance>;
   };
   tenantId: string;
+  autoLoadContext?: boolean;
+};
+export type HyperverseModule = {
   network: Network;
   blockchain: Blockchain;
-};
+} & HyperverseModuleBase;
 
 export type HyperverseModuleInstance = {
   tenantId: string;

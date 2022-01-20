@@ -14,10 +14,11 @@
     "react-dom": "17.0.2",
     "ui": "*",
     "@hyperverse/hyperverse": "*",
+    "@decentology/hyperverse": "*",
+    "@decentology/hyperverse-flow": "*",
     "@hyperverse/hyperverse-db": "*",
     "@hyperverse/hyperverse-algorand": "*",
     "@hyperverse/hyperverse-algorand-counter": "*"
-
   },
   "devDependencies": {
     "config": "*",

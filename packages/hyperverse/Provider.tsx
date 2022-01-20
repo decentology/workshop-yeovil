@@ -1,23 +1,30 @@
-import React, { createContext, useState } from "react";
-import { BlockchainList } from "./constants/blockchains";
+import React, { createContext, useState, FC } from "react";
+import Blockchain, { BlockchainList } from "./constants/blockchains";
+import Network from "./constants/networks";
 import { Hyperverse } from "./types";
 
-const Context = createContext<Hyperverse>({});
+const Context = createContext<Hyperverse>({
+  blockchain: null,
+  network: Network.TestNet,
+  modules: [],
+});
 Context.displayName = "HyperverseContext";
 
-const Provider = (props) => {
-  /**
-   * @typedef {{blockchain?: {name: string, Provider: any}, modules?: any}} Hyperverse
-   * @typedef {function(Hyperverse): void} HyperverseSetter
-   * @type {[Hyperverse, HyperverseSetter]} hyperverseState
-   * @description Holds the Hyperverse state and the function to update it.
-   */
-  const [hyperverse, setHyperverse] = useState<Hyperverse>({});
+type ProviderProps = {
+  hyperverse?: Promise<Hyperverse>;
+  value?: Promise<Hyperverse>;
+};
+
+const Provider: FC<ProviderProps> = (props) => {
+  const [hyperverse, setHyperverse] = useState<Hyperverse>({
+    blockchain: null,
+    modules: [],
+    network: Network.TestNet,
+  });
 
   React.useEffect(() => {
-    props.value.then((hyperverse) => setHyperverse(hyperverse));
+    props.value?.then((hyperverse) => setHyperverse(hyperverse));
   }, [props.value]);
-
   if (hyperverse?.blockchain) {
     const blockchainName = BlockchainList.find(
       (chain) => chain == hyperverse?.blockchain?.name
@@ -39,20 +46,14 @@ const Provider = (props) => {
       }
 
       children = React.createElement(
-        // hyperverse.blockchain.context.Provider,
         hyperverse?.blockchain?.Provider,
         null,
         renderModuleContexts(children)
       );
-      return (
-        <Context.Provider value={{ ...hyperverse }}>
-          {children}
-        </Context.Provider>
-      );
+      return <Context.Provider value={hyperverse}>{children}</Context.Provider>;
     }
-  } else {
-    return null;
   }
+  return null;
 };
 
 export { Context, Provider };

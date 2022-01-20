@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, { useReducer, FC } from "react";
 import { useHyperverse, networks } from "@hyperverse/hyperverse";
 import reducer from "./reducer";
 import { useAsync } from "react-async-hook";
@@ -32,7 +32,16 @@ const Initialize = async (network) => {
   }
 };
 
-const Provider = ({ children }) => {
+export type AlgorandContext = {
+  client: Algodv2;
+  explorer: string;
+  extra: {
+    indexer: Indexer;
+  };
+  isConnected: boolean;
+};
+
+const Provider: FC<AlgorandContext> = ({ children }) => {
   const { network } = useHyperverse();
   const { result } = useAsync(Initialize, [network]);
   const [state, dispatch] = useReducer(reducer, {
@@ -54,18 +63,16 @@ const Provider = ({ children }) => {
   const isConnected = state.account !== null;
 
   return (
-    <React.Fragment>
-      <Context.Provider
-        value={{
-          client: result?.client,
-          explorer: result?.explorer,
-          extra: result?.extra,
-          isConnected,
-        }}
-      >
-        {children}
-      </Context.Provider>
-    </React.Fragment>
+    <Context.Provider
+      value={{
+        client: result?.client,
+        explorer: result?.explorer,
+        extra: result?.extra,
+        isConnected,
+      }}
+    >
+      {children}
+    </Context.Provider>
   );
 };
 

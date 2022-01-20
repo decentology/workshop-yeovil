@@ -1,5 +1,33 @@
+import WalletConnect from "@walletconnect/client";
+type State = {
+  isInitialized: boolean;
+  connector: WalletConnect | null;
+  account: string | null;
+  isWaiting: boolean;
+  pendingTransactions: Transaction[];
+  completedTransactions: Transaction[];
+  signatureRequests: any[];
+};
 
-function reducer(state, action) {
+type Transaction = {
+  ID: string;
+  block: number;
+};
+
+type Action =
+  | { type: "setInitialized" }
+  | { type: "didConnect"; payload: WalletConnect }
+  | { type: "didDisconnect" }
+  | { type: "startWaiting" }
+  | { type: "stopWaiting" }
+  | { type: "setAccount"; payload: string }
+  | { type: "addPendingTransaction"; payload: Transaction }
+  | { type: "removePendingTransaction"; payload: Transaction }
+  | { type: "addSignatureRequest"; payload: any }
+  | { type: "removeSignatureRequests" }
+  | { type: "setAccount"; payload: string };
+
+function reducer(state: State, action: Action): State {
   switch (action.type) {
     case "setInitialized": {
       return {
@@ -45,7 +73,7 @@ function reducer(state, action) {
       const transaction = {
         ID: action.payload.ID,
         block: action.payload.block,
-      };
+      } as Transaction;
       return {
         ...state,
         pendingTransactions: state.pendingTransactions.filter(

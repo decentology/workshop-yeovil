@@ -1,23 +1,26 @@
 import { Button } from "ui";
-// import * as Hyperverse from "@hyperverse/hyperverse";
+import * as Hyperverse from "@hyperverse/hyperverse";
 // import { networks } from "@hyperverse/hyperverse";
-import * as Hyperverse from "@decentology/hyperverse";
+// import * as Hyperverse from "@decentology/hyperverse";
 import * as Flow from "@decentology/hyperverse-flow";
-// import Algorand from "@hyperverse/hyperverse-algorand";
+import Algorand from "@hyperverse/hyperverse-algorand";
+import * as Counter from "@hyperverse/hyperverse-algorand-counter";
 import FlowTest from "../components/FlowTest";
+import AlgoTest from "../components/AlgoTest";
 
 export default function Web() {
   const hyperverse = Hyperverse.initialize({
-    blockchain: Flow,
+    blockchain: Algorand,
     network: Hyperverse.networks.TestNet,
-    modules: [],
+    modules: [{ bundle: Counter, tenantId: "123" }],
   });
 
   return (
-    <Hyperverse.Provider hyperverse={hyperverse}>
+    <Hyperverse.Provider value={hyperverse}>
       <div>
         <h1>Web</h1>
-        <FlowTest />
+        <AlgoTest />
+        {/* <FlowTest /> */}
         {/* <Inner /> */}
         <Button />
       </div>

@@ -40,10 +40,7 @@ const AllTribes = () => {
   )
   const isLoading = allTribesLoading || joinTribeLoading || loadingTribeData
 
-  //sus
-  useTribeEvents('JoinedTribe', (x) => {
-    console.log('bob',x)
-  })
+
 
   return (
     <main>

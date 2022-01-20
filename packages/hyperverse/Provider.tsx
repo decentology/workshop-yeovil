@@ -12,7 +12,7 @@ const Provider = (props) => {
    * @type {[Hyperverse, HyperverseSetter]} hyperverseState
    * @description Holds the Hyperverse state and the function to update it.
    */
-  const [hyperverse, setHyperverse] = useState<Hyperverse>(null);
+  const [hyperverse, setHyperverse] = useState<Hyperverse>({});
 
   React.useEffect(() => {
     props.value.then((hyperverse) => setHyperverse(hyperverse));

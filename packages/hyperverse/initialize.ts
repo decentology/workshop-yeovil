@@ -1,11 +1,10 @@
-async function initialize(options) {
-  // Pass network to initial blockchain client
-  const { network } = options;
-  // const result = await options.blockchain.initialize({ network });
-  // console.log('Options and blockchain initialized', options, result);
+import { Hyperverse } from "./types";
+
+async function initialize<T extends Hyperverse>(options: T): Promise<T> {
+  const result = await options.blockchain.initialize(options);
   return {
     ...options,
-    // ...result,
+    ...result,
   };
 }
 

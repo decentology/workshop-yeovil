@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Context } from './Provider.jsx';
+import { Context } from './Provider';
 
 function useTribes() {
   const context = React.useContext(Context);

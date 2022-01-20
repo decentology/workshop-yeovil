@@ -1,7 +1,8 @@
-import React from "react";
+import React, { createContext, useState } from "react";
 import { BlockchainList } from "./constants/blockchains";
+import { Hyperverse } from "./types";
 
-const Context = React.createContext({});
+const Context = createContext<Hyperverse>({});
 Context.displayName = "HyperverseContext";
 
 const Provider = (props) => {
@@ -11,7 +12,7 @@ const Provider = (props) => {
    * @type {[Hyperverse, HyperverseSetter]} hyperverseState
    * @description Holds the Hyperverse state and the function to update it.
    */
-  const [hyperverse, setHyperverse] = React.useState({});
+  const [hyperverse, setHyperverse] = useState<Hyperverse>(null);
 
   React.useEffect(() => {
     props.value.then((hyperverse) => setHyperverse(hyperverse));

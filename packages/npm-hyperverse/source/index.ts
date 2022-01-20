@@ -1,6 +1,6 @@
-export { default as initialize } from "./initialize.js";
-export { default as useHyperverse } from "./useHyperverse.js";
-export { Context, Provider } from "./Provider.jsx";
+export { default as initialize } from "./initialize";
+export { default as useHyperverse } from "./useHyperverse";
+export { Context, Provider } from "./Provider";
 export { useDeviceDetect } from "./components";
 
 export { default as blockchains } from "./constants/blockchains";

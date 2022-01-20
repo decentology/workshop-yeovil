@@ -1,5 +1,5 @@
 import React from "react";
-import useAlgorand from "../hyperverse-algorand/useAlgorand";
+import useAlgorand from "@hyperverse/hyperverse-algorand/useAlgorand";
 
 const Context = React.createContext({});
 Context.displayName = "AlgorandCounterContext";

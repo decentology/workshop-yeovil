@@ -1,4 +1,3 @@
-import WalletConnect from "@walletconnect/client";
 
 function reducer(state, action) {
   switch (action.type) {

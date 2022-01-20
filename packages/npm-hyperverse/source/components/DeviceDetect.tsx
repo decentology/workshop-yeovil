@@ -1,21 +1,35 @@
-import React, {useState, useEffect, useContext} from 'react';
+import React, { useState, useEffect, useContext, FC } from "react";
 
-const Context = React.createContext({});
+type HyperverseContext = {
+  width: number;
+  isMobile: boolean;
+  isDesktop: boolean;
+  isAppleMobile: boolean;
+};
+
+const Context = React.createContext<HyperverseContext>({
+  width: 0,
+  isMobile: false,
+  isDesktop: false,
+  isAppleMobile: false,
+});
 
 function useDeviceDetect() {
   const context = useContext(Context);
   return context;
 }
 
-function Provider(props) {
+type ProviderProps = {};
+
+const Provider: FC<ProviderProps> = (props) => {
   const [width, setWidth] = useState(window.innerWidth);
   const onResize = () => {
     setWidth(window.innerWidth);
   };
   useEffect(() => {
-    window.addEventListener('resize', onResize);
+    window.addEventListener("resize", onResize);
     return () => {
-      window.removeEventListener('resize', onResize);
+      window.removeEventListener("resize", onResize);
     };
   }, []);
 
@@ -30,15 +44,12 @@ function Provider(props) {
         width,
         isMobile,
         isDesktop,
-        isAppleMobile
+        isAppleMobile,
       }}
     >
       {props.children}
     </Context.Provider>
   );
-}
-
-export {
-  Provider,
-  useDeviceDetect
 };
+
+export { Provider, useDeviceDetect };

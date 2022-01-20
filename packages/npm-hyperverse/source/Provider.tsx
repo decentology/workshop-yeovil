@@ -1,10 +1,15 @@
-import React from "react";
+import React, { FC } from "react";
 
 import { DeviceDetectProvider } from "./components";
+import { Hyperverse } from "./types";
 
 const Context = React.createContext(null);
 
-function Provider(props) {
+type ProviderProps = {
+  hyperverse: Promise<Hyperverse>;
+};
+
+const Provider: FC<ProviderProps> = (props) => {
   const [hyperverse, setHyperverse] = React.useState(null);
 
   React.useEffect(() => {
@@ -42,6 +47,6 @@ function Provider(props) {
   } else {
     return null;
   }
-}
+};
 
 export { Context, Provider };

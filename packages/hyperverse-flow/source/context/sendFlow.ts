@@ -6,7 +6,7 @@ const fixedPoint = new Intl.NumberFormat('en-US', {
   useGrouping: false
 });
 
-const sendFlow = async (recipient, amount) => {
+const sendFlow = async (recipient: string, amount: number) => {
   try {
     const transactionId = await fcl.send([
       fcl.transaction`

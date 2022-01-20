@@ -1,8 +1,8 @@
 import * as fcl from "@onflow/fcl";
 import * as Hyperverse from "@decentology/hyperverse";
 
-import { Provider } from "./context/Flow.jsx";
-import useFlow from "./useFlow.js";
+import { Provider } from "./context/Flow";
+import useFlow from "./useFlow";
 
 const metadata = {
   name: "Flow",

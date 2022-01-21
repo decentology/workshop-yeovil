@@ -1,8 +1,8 @@
 import algosdk from 'algosdk';
 
 import * as Hyperverse from '@decentology/hyperverse';
-import {Provider} from './context/Algorand.jsx';
-import useAlgorand from './useAlgorand.js';
+import {Provider} from './context/Algorand';
+import useAlgorand from './useAlgorand';
 
 const metadata = {
   name: 'Algorand'

@@ -13,12 +13,11 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "ui": "*",
-    "@hyperverse/hyperverse": "*",
     "@decentology/hyperverse": "*",
     "@decentology/hyperverse-flow": "*",
-    "@hyperverse/hyperverse-db": "*",
-    "@hyperverse/hyperverse-algorand": "*",
-    "@hyperverse/hyperverse-algorand-counter": "*"
+    "@decentology/hyperverse-db": "*",
+    "@decentology/hyperverse-algorand": "*",
+    "@decentology/hyperverse-algorand-counter": "*"
   },
   "devDependencies": {
     "config": "*",

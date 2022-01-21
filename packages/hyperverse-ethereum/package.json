@@ -1,5 +1,5 @@
 {
-  "name": "@hyperverse/hyperverse-ethereum",
+  "name": "@decentology/hyperverse-ethereum",
   "version": "1.0.0",
   "type": "module",
   "main": "index.js",

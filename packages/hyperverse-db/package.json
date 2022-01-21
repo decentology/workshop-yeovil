@@ -1,5 +1,5 @@
 {
-  "name": "@hyperverse/hyperverse-db",
+  "name": "@decentology/hyperverse-db",
   "version": "1.0.0",
   "type": "module",
   "main": "index.ts",

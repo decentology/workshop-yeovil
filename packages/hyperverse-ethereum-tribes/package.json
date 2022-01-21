@@ -1,15 +1,15 @@
 {
-  "name": "@hyperverse/hyperverse-ethereum-tribes",
+  "name": "@decentology/hyperverse-ethereum-tribes",
   "version": "1.0.0",
-  "module": "dist/index.js",
+  "module": "dist/index.ts",
   "main": "index.ts",
   "license": "MIT",
   "scripts": {
     "test": "hardhat test"
   },
   "dependencies": {
-    "@hyperverse/hyperverse": "*",
-    "@hyperverse/hyperverse-ethereum": "*",
+    "@decentology/hyperverse": "*",
+    "@decentology/hyperverse-ethereum": "*",
     "@openzeppelin/contracts": "^4.4.2",
     "react": "^17.0.2",
     "react-query": "^3.34.7",

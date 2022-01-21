@@ -1,10 +1,8 @@
 import { Button } from "ui";
-import * as Hyperverse from "@hyperverse/hyperverse";
-// import { networks } from "@hyperverse/hyperverse";
-// import * as Hyperverse from "@decentology/hyperverse";
+import * as Hyperverse from "@decentology/hyperverse";
 import * as Flow from "@decentology/hyperverse-flow";
-import Algorand from "@hyperverse/hyperverse-algorand";
-import * as Counter from "@hyperverse/hyperverse-algorand-counter";
+import * as Algorand from "@decentology/hyperverse-algorand";
+import * as Counter from "@decentology/hyperverse-algorand-counter";
 import FlowTest from "../components/FlowTest";
 import AlgoTest from "../components/AlgoTest";
 
@@ -16,7 +14,7 @@ export default function Web() {
   });
 
   return (
-    <Hyperverse.Provider value={hyperverse}>
+    <Hyperverse.Provider hyperverse={hyperverse}>
       <div>
         <h1>Web</h1>
         <AlgoTest />

@@ -1,7 +1,7 @@
 const withTM = require('next-transpile-modules')([
-  '@hyperverse/hyperverse',
-  '@hyperverse/hyperverse-ethereum',
-  '@hyperverse/hyperverse-ethereum-tribes',
+  '@decentology/hyperverse',
+  '@decentology/hyperverse-ethereum',
+  '@decentology/hyperverse-ethereum-tribes',
 ])
 
 module.exports = withTM({

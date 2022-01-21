@@ -5,14 +5,33 @@ import { useAccount } from "@hyperverse/hyperverse-ethereum";
 import { ContractABI, TENANT_ADDRESS, CONTRACT_ADDRESS } from "./Provider";
 import { useEvent } from "react-use";
 
+type Transaction = {
+  wait: () => void;
+};
+type ContractState = {
+  createInstance?: () => Transaction;
+  instance?: (account: string) => void;
+  addNewTribe?: (metadata: any) => Transaction;
+  getUserTribe?: (tenant: string, account: string) => any;
+  getTribeData?: (tenant: string, id: string) => any;
+  leaveTribe?: (tenant: string) => any;
+  totalTribes?: (tenant: string) => any;
+  joinTribe?: (tenant: string, tribeId: string) => Transaction;
+  address?: string;
+};
 export const useTribes = () => {
-  const [contract, setTribesContract] = useState({});
+  const [contract, setTribesContract] = useState<ContractState>({
+    // createInstance: () => {},
+    // instance: () => {},
+    // addNewTribe: (metadata) => {},
+  });
   const queryClient = useQueryClient();
   const [{ data }] = useAccount();
 
   const setup = async () => {
     const signer = await data?.connector?.getSigner();
     const ctr = new ethers.Contract(CONTRACT_ADDRESS, ContractABI, signer);
+    // @ts-ignore
     setTribesContract(ctr);
   };
 
@@ -146,6 +165,7 @@ export const useTribes = () => {
 
   const useTribeEvents = (eventName, callback) => {
     console.log("joe", contract);
+    // @ts-ignore
     return useEvent(eventName, useCallback(callback, [contract]), contract);
   };
 

@@ -2,7 +2,7 @@
   "name": "@hyperverse/hyperverse-ethereum-tribes",
   "version": "1.0.0",
   "module": "dist/index.js",
-  "main": "index.js",
+  "main": "index.ts",
   "license": "MIT",
   "scripts": {
     "test": "hardhat test"

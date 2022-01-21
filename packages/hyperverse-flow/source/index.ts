@@ -8,7 +8,7 @@ const metadata = {
   name: "Flow",
 };
 
-function initialize(network) {
+function initialize(network: string) {
   return new Promise(async (resolve, reject) => {
     if (network === Hyperverse.networks.MainNet) {
       fcl

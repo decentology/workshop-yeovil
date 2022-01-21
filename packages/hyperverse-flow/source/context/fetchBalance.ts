@@ -1,7 +1,7 @@
 import * as fcl from '@onflow/fcl';
 import * as FlowTypes from '@onflow/types';
 
-const fetchBalance = async (address) => {
+const fetchBalance = async (address: string) => {
   const balance = await fcl.send([
     fcl.script`
       import FungibleToken from 0xFungibleToken

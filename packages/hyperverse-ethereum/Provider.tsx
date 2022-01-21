@@ -1,20 +1,21 @@
-import React from 'react'
+import React, { createContext, FC } from "react";
 import {
   WalletConnectConnector,
   defaultChains,
   InjectedConnector,
   Provider as WagmiProvider,
-} from 'wagmi'
-const Context = React.createContext({});
-Context.displayName = 'EthereumContext';
+} from "wagmi";
+type EthereumContext = {};
+const Context = createContext<EthereumContext>({});
+Context.displayName = "EthereumContext";
 
-function Provider({ children, ...props }) {
-  const infuraId = props.infuraId || 'fb9f66bab7574d70b281f62e19c27d49'
+const Provider: FC<any> = ({ children, ...props }) => {
+  const infuraId = props.infuraId || "fb9f66bab7574d70b281f62e19c27d49";
 
   // Chains for connectors to support
-  const chains = defaultChains
+  const chains = defaultChains;
 
-  const connectors = ({ chainId }) => {
+  const connectors = ({ chainId }: { chainId?: number }) => {
     return [
       new InjectedConnector({ chains }),
       new WalletConnectConnector({
@@ -26,13 +27,13 @@ function Provider({ children, ...props }) {
           },
         },
       }),
-    ]
-  }
+    ];
+  };
   return (
     <Context.Provider value={{}}>
       <WagmiProvider connectors={connectors}>{children}</WagmiProvider>
     </Context.Provider>
-    )
-}
+  );
+};
 
 export default { Context, Provider };

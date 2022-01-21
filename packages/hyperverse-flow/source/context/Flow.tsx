@@ -1,13 +1,19 @@
-import React, { useReducer, useEffect } from "react";
+import React, { useReducer, useEffect, createContext } from "react";
 import * as fcl from "@onflow/fcl";
-import * as FlowTypes from "@onflow/types";
-
 import authenticate from "./authenticate";
 import unauthenticate from "./unauthenticate";
 import sendFlow from "./sendFlow";
 import fetchBalance from "./fetchBalance";
 
-function reducer(state, action) {
+type State = {
+  user: {};
+};
+
+type Action =
+  | { type: "setUser"; payload: fcl.User }
+  | { type: "setBalance"; payload: number };
+
+function reducer(state: State, action: Action) {
   switch (action.type) {
     case "setUser": {
       return {
@@ -27,17 +33,17 @@ function reducer(state, action) {
 }
 
 type FlowContext = {
-  state?: {},
-  isInitialized?: boolean,
-  authenticate?: typeof authenticate,
-  unauthenticate?: typeof unauthenticate,
-  fetchBalance?: typeof fetchBalance,
-  updateBalance?: () => Promise<void>,
-  sendFlow?: typeof sendFlow,
-
+  state?: {};
+  isInitialized?: boolean;
+  authenticate?: typeof authenticate;
+  unauthenticate?: typeof unauthenticate;
+  fetchBalance?: typeof fetchBalance;
+  updateBalance?: () => Promise<void>;
+  sendFlow?: typeof sendFlow;
 };
 
-const Context = React.createContext<FlowContext>({});
+const Context = createContext<FlowContext>({});
+Context.displayName = "FlowContext";
 
 function Provider(props) {
   const [state, dispatch] = useReducer(reducer, {

@@ -1,29 +1,28 @@
-import Link from 'next/link'
-import styles from '../styles/Home.module.css'
-// @ts-ignore
-import { useState } from 'react'
-import { useAccount } from 'wagmi'
-import Wallets from './WalletModal'
+import Link from "next/link";
+import styles from "../styles/Home.module.css";
+import { useState } from "react";
+import { useAccount } from "wagmi";
+import Wallets from "./WalletModal";
 const shortenHash = (
-  hash: string = '',
+  hash: string = "",
   charLength: number = 6,
-  postCharLength?: number,
+  postCharLength?: number
 ) => {
-  let shortendHash
+  let shortendHash;
   if (postCharLength) {
     shortendHash =
       hash.slice(0, charLength) +
-      '...' +
-      hash.slice(hash.length - postCharLength, hash.length)
+      "..." +
+      hash.slice(hash.length - postCharLength, hash.length);
   } else {
-    shortendHash = hash.slice(0, charLength)
+    shortendHash = hash.slice(0, charLength);
   }
-  return shortendHash
-}
+  return shortendHash;
+};
 
 const Nav = () => {
-  const [showModal, setShowModal] = useState(false)
-  const [{ data }, disconnect] = useAccount()
+  const [showModal, setShowModal] = useState(false);
+  const [{ data }, disconnect] = useAccount();
 
   return (
     <nav>
@@ -53,7 +52,7 @@ const Nav = () => {
         {showModal && <Wallets close={() => setShowModal(false)} />}
       </div>
     </nav>
-  )
-}
+  );
+};
 
-export default Nav
+export default Nav;

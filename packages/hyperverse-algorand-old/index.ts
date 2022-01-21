@@ -7,6 +7,7 @@ import {
   networks,
 } from "@hyperverse/hyperverse";
 export type { AlgorandContext } from "./Provider";
+import  {} from './Provider'
 
 export type AlgorandFeatures = {
   indexer: Indexer | null;
@@ -22,3 +23,4 @@ const AlgorandBlockchain = makeHyperverseBlockchain({
 });
 
 export default AlgorandBlockchain;
+export { useAlgorand };

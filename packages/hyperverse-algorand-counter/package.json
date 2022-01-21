@@ -1,12 +1,20 @@
 {
-  "name": "@hyperverse/hyperverse-algorand-counter",
-  "version": "1.0.0",
-  "type": "module",
-  "main": "index.js",
+  "name": "@decentology/hyperverse-algorand-counter",
+  "main": "./source/index.ts",
+  "version": "0.1.2",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/decentology/npm-hyperverse-algorand-counter"
+  },
+  "scripts": {},
+  "peerDependencies": {
+    "react": "^17.0.2",
+    "@decentology/hyperverse": "*",
+    "@decentology/hyperverse-algorand": "*"
+  },
+  "devDependencies": {},
   "dependencies": {
-
-    "@hyperverse/hyperverse": "*",
-    "@hyperverse/hyperverse-algorand": "*"
+    "algosdk": "^1.12.0"
   }
 }

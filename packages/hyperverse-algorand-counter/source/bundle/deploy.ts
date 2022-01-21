@@ -1,4 +1,3 @@
-import React from 'react';
 import algosdk from 'algosdk';
 
 const approvalProgramSource = (

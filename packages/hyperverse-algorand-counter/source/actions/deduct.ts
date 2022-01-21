@@ -1,7 +1,7 @@
 import algosdk from 'algosdk';
 
 async function deduct(props) {
-  const {environment, algorand, account} = props;
+  const { environment, algorand, account } = props;
 
   const suggestedParams = await algorand.client.getTransactionParams().do();
   const transaction = await algosdk.makeApplicationNoOpTxnFromObject({
@@ -16,4 +16,4 @@ async function deduct(props) {
   algorand.requestSignature(transaction);
 }
 
-export {deduct};
+export { deduct };

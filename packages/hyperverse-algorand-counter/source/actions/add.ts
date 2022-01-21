@@ -1,6 +1,6 @@
 import algosdk from 'algosdk';
 
-async function add(props) {
+async function add(props: any) {
   const {environment, algorand, account} = props;
 
   const suggestedParams = await algorand.client.getTransactionParams().do();

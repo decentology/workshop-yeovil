@@ -1,5 +1,4 @@
-import { useState, useEffect } from "react";
-import { useAsync } from "react-use";
+import { useState } from "react";
 import GUN from "gun";
 import "gun/sea";
 import "gun/lib/open";
@@ -18,6 +17,7 @@ const useStorage = (url) => {
   //  }, [url]);
 
   const getModules = async () => {
+    // @ts-ignore
     const result = await gun.user(hyperverseUser).get("modules").load().then();
     return result;
   };

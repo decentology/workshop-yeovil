@@ -2,7 +2,7 @@
   "name": "@hyperverse/hyperverse-db",
   "version": "1.0.0",
   "type": "module",
-  "main": "index.js",
+  "main": "index.ts",
   "license": "MIT",
   "dependencies": {
     "gun": "^0.2020.1235",

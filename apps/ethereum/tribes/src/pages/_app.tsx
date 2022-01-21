@@ -2,7 +2,7 @@ import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import * as Hyperverse from "@decentology/hyperverse";
 import { networks } from "@decentology/hyperverse";
-import * as Ethereum from "@decentology/hyperverse-ethereum";
+import Ethereum from "@decentology/hyperverse-ethereum";
 import * as Tribes from "@decentology/hyperverse-ethereum-tribes";
 
 //@ts-ignore

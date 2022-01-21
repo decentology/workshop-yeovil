@@ -1,6 +1,6 @@
 import { Button } from "ui";
 import * as Hyperverse from "@decentology/hyperverse";
-import * as Algorand from "@decentology/hyperverse-algorand";
+import Algorand from "@decentology/hyperverse-algorand";
 import * as Counter from "@decentology/hyperverse-algorand-counter";
 import AlgoTest from "../components/AlgoTest";
 

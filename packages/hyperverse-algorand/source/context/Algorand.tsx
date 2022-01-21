@@ -3,10 +3,11 @@ import WalletConnect from "@walletconnect/client";
 import QRCodeModal from "algorand-walletconnect-qrcode-modal";
 import algosdk, { Algodv2, Indexer } from "algosdk";
 import { formatJsonRpcRequest } from "@json-rpc-tools/utils";
-
+import { useAsync } from "react-async-hook";
 import { Signature } from "../components";
-
+import { Initialize } from "./initialize";
 import reducer, { State } from "./reducer";
+import { useHyperverse } from "@decentology/hyperverse";
 
 type AlgorandContext = {
   state: State;
@@ -51,7 +52,25 @@ const constants = {
 };
 
 function Provider(props) {
-  const { client, indexer, explorer } = props;
+  const { network } = useHyperverse();
+  const { result, status, error, loading } = useAsync(Initialize, [network], {
+    initialState: () => {
+      return {
+        error: null,
+        loading: true,
+        status: null,
+        result: {
+          client: null,
+          explorer: null,
+          extra: { indexer: null },
+        },
+      };
+    },
+  });
+
+  const client = result?.client;
+  const explorer = result?.explorer;
+  const indexer = result?.extra?.indexer;
 
   const [state, dispatch] = useReducer(reducer, {
     connector: null,
@@ -333,8 +352,6 @@ function Provider(props) {
   const hasTransactions =
     hasPendingTransactions || state.completedTransactions.length > 0;
   const hasSignatureRequests = state.signatureRequests.length > 0;
-
-  console.log(state);
 
   return (
     <Context.Provider

@@ -6,8 +6,8 @@ import Loader from '../components/Loader'
 // @ts-ignore
 import { useTribes } from '@decentology/hyperverse-ethereum-tribes'
 import { useAccount } from '@decentology/hyperverse-ethereum'
-import { useCallback } from 'react'
 import { Contract } from 'ethers'
+import { useCallback } from 'react'
 
 const getData = async (data: { id: number; txn: string }[]) => {
   return Promise.all(

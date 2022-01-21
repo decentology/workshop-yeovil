@@ -1,7 +1,7 @@
 import React from "react";
 
 // import {} from '@hyperverse/hyperverse-algorand';
-import { useAlgorand } from "@decentology/hyperverse-algorand";
+import Algorand  from "@decentology/hyperverse-algorand";
 import { useEnvironment } from "./environment";
 
 import * as actions from "./actions";
@@ -11,7 +11,7 @@ const Context = React.createContext({});
 
 function Provider(props) {
   const environment = useEnvironment();
-  const algorand = useAlgorand();
+  const algorand = Algorand.useAlgorand();
 
   const boundActions = {};
   for (const actionName in actions) {

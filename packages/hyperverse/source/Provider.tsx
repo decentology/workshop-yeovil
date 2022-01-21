@@ -1,9 +1,15 @@
-import React, { FC } from "react";
+import React, { createContext, FC } from "react";
 
 import { DeviceDetectProvider } from "./components";
+import Network from "./constants/networks";
 import { Hyperverse } from "./types";
 
-const Context = React.createContext(null);
+const Context = createContext<Hyperverse>({
+  blockchain: null,
+  network: Network.TestNet,
+  modules: [],
+});
+Context.displayName = "HyperverseContext";
 
 type ProviderProps = {
   hyperverse: Promise<Hyperverse>;
@@ -18,24 +24,16 @@ const Provider: FC<ProviderProps> = (props) => {
     });
   }, [props.hyperverse]);
 
-  if (hyperverse) {
+  if (hyperverse?.blockchain) {
     let children = props.children;
 
     for (const module of hyperverse.modules.reverse()) {
-      children = React.createElement(
-        module.bundle.Provider,
-        {
-          blockchain: hyperverse.blockchain,
-          network: hyperverse.network,
-          tenantID: module.tenantID,
-        },
-        children
-      );
+      children = React.createElement(module.bundle.Provider, null, children);
     }
 
     const blockchain = React.createElement(
       hyperverse.blockchain.Provider,
-      hyperverse.blockchain.props,
+      null,
       children
     );
 
@@ -44,9 +42,8 @@ const Provider: FC<ProviderProps> = (props) => {
         <DeviceDetectProvider>{blockchain}</DeviceDetectProvider>
       </Context.Provider>
     );
-  } else {
-    return null;
   }
+  return null;
 };
 
 export { Context, Provider };

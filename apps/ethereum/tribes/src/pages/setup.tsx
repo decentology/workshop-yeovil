@@ -6,7 +6,7 @@ import styles from '../styles/Home.module.css'
 import Loader from '../components/Loader'
 // @ts-ignore
 import { useTribes } from '@hyperverse/hyperverse-ethereum-tribes'
-import { useAccount } from '@hyperverse/hyperverse-ethereum'
+import { useAccount } from '@decentology/hyperverse-ethereum'
 
 import Wallets from '../components/WalletModal'
 

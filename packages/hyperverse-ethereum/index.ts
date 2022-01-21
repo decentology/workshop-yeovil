@@ -5,11 +5,11 @@ import {
   blockchains,
   makeHyperverseBlockchain,
   networks,
-} from "@hyperverse/hyperverse";
+} from "@decentology/hyperverse";
 
 const EthereumBlockchain = makeHyperverseBlockchain({
   name: blockchains.Ethereum,
-  context: useEthereum,
+  context: Ethereum.Context,
   Provider: Ethereum.Provider,
   initialize: async (options) => {
     return { client: "testing", explorer: "" };

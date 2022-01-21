@@ -15,7 +15,7 @@ export type HyperverseBlockchainInit<T> = (
 
 export type HyperverseBlockchain<T> = {
   name: Blockchain;
-  context: () => any;
+  // context: () => any;
   Provider: FC<any>;
   initialize: HyperverseBlockchainInit<T>;
 };

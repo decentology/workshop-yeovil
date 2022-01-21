@@ -1,5 +1,5 @@
 import { createContext, FC } from "react";
-import useEthereum from "@hyperverse/hyperverse-ethereum/useEthereum";
+import useEthereum from "@decentology/hyperverse-ethereum/useEthereum";
 import { QueryClientProvider, QueryClient } from "react-query";
 import ABI from "./utils/Tribes.json";
 const client = new QueryClient();

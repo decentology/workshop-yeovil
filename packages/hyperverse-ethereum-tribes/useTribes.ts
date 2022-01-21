@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import { ethers } from "ethers";
-import { useAccount } from "@hyperverse/hyperverse-ethereum";
+import { useAccount } from "@decentology/hyperverse-ethereum";
 import { ContractABI, TENANT_ADDRESS, CONTRACT_ADDRESS } from "./Provider";
 import { useEvent } from "react-use";
 

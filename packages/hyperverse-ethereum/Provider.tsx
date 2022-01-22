@@ -49,9 +49,7 @@ const Provider: FC<any> = ({ children, ...props }) => {
     isChainSupported(chainId)
       ? new providers.InfuraWebSocketProvider(chainId, infuraId)
       : undefined;
-
   return (
-    <Context.Provider value={{}}>
       <WagmiProvider
         autoConnect
         provider={provider}
@@ -60,7 +58,6 @@ const Provider: FC<any> = ({ children, ...props }) => {
       >
         {children}
       </WagmiProvider>
-    </Context.Provider>
   );
 };
 

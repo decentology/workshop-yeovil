@@ -1,17 +1,17 @@
-import styles from '../styles/Home.module.css'
-import Image from 'next/image'
-import { useConnect } from 'wagmi'
+import styles from "../styles/Home.module.css";
+import Image from "next/image";
+import { useConnect } from "@decentology/hyperverse-ethereum";
 type ModalProps = {
-  close: () => void
-}
+  close: () => void;
+};
 
 const WalletModal = ({ close }: ModalProps) => {
-  const [{ data, error: connectError }, connect] = useConnect()
+  const [{ data, error: connectError }, connect] = useConnect();
 
   const connectors = data.connectors.map((val) => {
-    return { name: val.name, connect: () => connect(val) }
-  })
-  
+    return { name: val.name, connect: () => connect(val) };
+  });
+
   return (
     <div className={styles.modal}>
       <div className={styles.modalContent}>
@@ -26,8 +26,8 @@ const WalletModal = ({ close }: ModalProps) => {
                   key={name}
                   className={styles.connect}
                   onClick={() => {
-                    connect()
-                    close()
+                    connect();
+                    close();
                   }}
                 >
                   <span>
@@ -40,12 +40,12 @@ const WalletModal = ({ close }: ModalProps) => {
                     <h5>{name}</h5>
                   </span>
                 </button>
-              )
+              );
             })}
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default WalletModal
+export default WalletModal;

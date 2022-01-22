@@ -30,7 +30,6 @@ const Provider: FC<ProviderProps> = (props) => {
     for (const module of hyperverse.modules.reverse()) {
       children = React.createElement(module.bundle.Provider, null, children);
     }
-
     const blockchain = React.createElement(
       hyperverse.blockchain.Provider,
       null,

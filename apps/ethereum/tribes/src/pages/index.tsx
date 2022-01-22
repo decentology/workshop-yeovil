@@ -12,7 +12,6 @@ const Home: NextPage = () => {
   const [{ data: account, error: accountErr }] = useAccount();
   const { TribeId } = useTribes();
   const { data, error: tribeIdErr } = TribeId();
-
   return (
     <>
       <Head>

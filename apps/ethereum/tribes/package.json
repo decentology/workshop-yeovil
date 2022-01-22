@@ -16,7 +16,6 @@
     "react-jss": "^10.9.0",
     "react-query": "^3.34.7",
     "skynet-js": "^3.0.2",
-    "wagmi": "^0.0.17",
     "@decentology/hyperverse": "*",
     "@decentology/hyperverse-ethereum": "*",
     "@decentology/hyperverse-ethereum-tribes": "*"

@@ -164,7 +164,6 @@ export const useTribes = () => {
   );
 
   const useTribeEvents = (eventName, callback) => {
-    console.log("joe", contract);
     // @ts-ignore
     return useEvent(eventName, useCallback(callback, [contract]), contract);
   };

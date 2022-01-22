@@ -21,7 +21,8 @@ const shortenHash = (
 };
 
 const Nav = () => {
-  const [showModal, setShowModal] = useState(false);
+  // return null;
+  const [showModal, setShowModal] = useState<boolean>(false);
   const [{ data }, disconnect] = useAccount();
 
   return (

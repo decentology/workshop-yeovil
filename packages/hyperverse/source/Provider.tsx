@@ -1,4 +1,4 @@
-import React, { createContext, FC } from "react";
+import React, { createContext, FC, useState } from "react";
 
 import { DeviceDetectProvider } from "./components";
 import Network from "./constants/networks";
@@ -16,7 +16,7 @@ type ProviderProps = {
 };
 
 const Provider: FC<ProviderProps> = (props) => {
-  const [hyperverse, setHyperverse] = React.useState(null);
+  const [hyperverse, setHyperverse] = useState<Hyperverse | null>(null);
 
   React.useEffect(() => {
     props.hyperverse.then((hyperverse) => {

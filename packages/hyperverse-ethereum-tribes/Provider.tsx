@@ -1,5 +1,6 @@
 import { createContext, FC } from "react";
 import useEthereum from "@decentology/hyperverse-ethereum/useEthereum";
+import { Provider as WagmiProvider } from "wagmi";
 import { QueryClientProvider, QueryClient } from "react-query";
 import ABI from "./utils/Tribes.json";
 const client = new QueryClient();
@@ -16,9 +17,9 @@ Context.displayName = "EthereumTribesContext";
 const Provider: FC<any> = ({ children }) => {
   const ethereum = useEthereum();
   return (
-    <QueryClientProvider client={client}>
-      <Context.Provider value={{}}>{children}</Context.Provider>
-    </QueryClientProvider>
+      <QueryClientProvider client={client}>
+        <Context.Provider value={{}}>{children}</Context.Provider>
+      </QueryClientProvider>
   );
 };
 

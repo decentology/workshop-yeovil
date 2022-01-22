@@ -6,6 +6,6 @@
   "license": "MIT",
   "dependencies": {
     "react": "^17.0.2",
-    "wagmi": "^0.0.17"
+    "wagmi": "^0.2.0"
   }
 }

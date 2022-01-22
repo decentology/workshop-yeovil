@@ -3,6 +3,7 @@ import { useNetwork } from 'wagmi'
 
 
 const Footer = () => {
+  return null;
   const [
     { data: networkData, error: switchNetworkError },
     switchNetwork,

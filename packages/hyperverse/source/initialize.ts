@@ -1,5 +1,6 @@
+import { Hyperverse, HyperverseModuleBase } from ".";
 
-async function initialize(options) {
+async function initialize(options: Hyperverse) {
   // const blockchain = await options.blockchain.initialize(options);
   // return {
   //   ...options,

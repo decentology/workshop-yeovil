@@ -53,7 +53,12 @@ const constants = {
 
 function Provider(props) {
   const { network } = useHyperverse();
-  const { result, status, error, loading } = useAsync(Initialize, [network], {
+  const {
+    result: { client, explorer, extra: { indexer } = {} } = {},
+    status,
+    error,
+    loading,
+  } = useAsync(Initialize, [network], {
     initialState: () => {
       return {
         error: null,
@@ -67,10 +72,6 @@ function Provider(props) {
       };
     },
   });
-
-  const client = result?.client;
-  const explorer = result?.explorer;
-  const indexer = result?.extra?.indexer;
 
   const [state, dispatch] = useReducer(reducer, {
     connector: null,

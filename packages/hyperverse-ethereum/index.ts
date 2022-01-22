@@ -1,5 +1,4 @@
 export * from "wagmi";
-import useEthereum from "./useEthereum";
 import Ethereum from "./Provider";
 import {
   blockchains,
@@ -9,7 +8,6 @@ import {
 
 const EthereumBlockchain = makeHyperverseBlockchain({
   name: blockchains.Ethereum,
-  context: Ethereum.Context,
   Provider: Ethereum.Provider,
   initialize: async (options) => {
     return { client: "testing", explorer: "" };

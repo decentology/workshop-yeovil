@@ -1,6 +1,7 @@
 import algosdk from 'algosdk';
+import { ActionProps } from '.';
 
-async function deduct(props) {
+async function deduct(props: ActionProps): Promise<void> {
   const { environment, algorand, account } = props;
 
   const suggestedParams = await algorand.client.getTransactionParams().do();

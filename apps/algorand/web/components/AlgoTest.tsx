@@ -1,11 +1,11 @@
 import React from "react";
-import * as Counter from "@decentology/hyperverse-algorand-counter";
-import Algorand from "@decentology/hyperverse-algorand";
+import { useCounter } from "@decentology/hyperverse-algorand-counter";
+import { useAlgorand } from "@decentology/hyperverse-algorand";
 
 const AlgoTest = () => {
-  const counter = Counter.useCounter();
-  const algo = Algorand.useAlgorand();
-  return <div>Algo Test</div>;
+  const counter = useCounter();
+  const algo = useAlgorand();
+  return <div>Algo Test {counter.appID}</div>;
 };
 
 export default AlgoTest;

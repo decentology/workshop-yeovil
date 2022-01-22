@@ -1,4 +1,6 @@
-async function fetchCount(props) {
+import { ActionProps } from ".";
+
+async function fetchCount(props: ActionProps): Promise<number> {
   const {environment, algorand} = props;
 
   const response = await algorand.client.getApplicationByID(environment.appID).do();

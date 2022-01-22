@@ -1,19 +1,30 @@
+// @strictBindCallApply: true
+
 import React from "react";
 
 // import {} from '@hyperverse/hyperverse-algorand';
-import Algorand  from "@decentology/hyperverse-algorand";
+import { useAlgorand } from "@decentology/hyperverse-algorand";
 import { useEnvironment } from "./environment";
 
 import * as actions from "./actions";
 import * as bundle from "./bundle";
 
-const Context = React.createContext({});
+type AlgorandConterContext = {
+  appID: number;
+  add: typeof actions.add;
+  deduct: typeof actions.deduct;
+  fetchCount: typeof actions.fetchCount;
+  deploy: typeof bundle.deploy;
+} | null;
+
+const Context = React.createContext<AlgorandConterContext>(null);
+Context.displayName = "AlgorandCounterContext";
 
 function Provider(props) {
   const environment = useEnvironment();
-  const algorand = Algorand.useAlgorand();
+  const algorand = useAlgorand();
 
-  const boundActions = {};
+  const boundActions = {} as typeof actions;
   for (const actionName in actions) {
     boundActions[actionName] = actions[actionName].bind(null, {
       environment,
@@ -22,7 +33,7 @@ function Provider(props) {
     });
   }
 
-  const boundBundle = {};
+  const boundBundle = {} as typeof bundle;
   for (const actionName in bundle) {
     boundBundle[actionName] = bundle[actionName].bind(null, {
       environment,
@@ -34,9 +45,8 @@ function Provider(props) {
   return (
     <Context.Provider
       value={{
-        bundle: {
-          ...boundBundle,
-        },
+        appID: environment.appID,
+        ...boundBundle,
         ...boundActions,
       }}
     >

@@ -13,5 +13,5 @@ const EthereumBlockchain = makeHyperverseBlockchain({
     return { client: "testing", explorer: "" };
   },
 });
-
+export { default as useEthereum } from "./useEthereum";
 export default EthereumBlockchain;

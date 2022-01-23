@@ -9,22 +9,18 @@ type Transaction = {
   wait: () => void;
 };
 type ContractState = {
-  createInstance?: () => Transaction;
-  instance?: (account: string) => void;
-  addNewTribe?: (metadata: any) => Transaction;
-  getUserTribe?: (tenant: string, account: string) => any;
-  getTribeData?: (tenant: string, id: string) => any;
-  leaveTribe?: (tenant: string) => any;
-  totalTribes?: (tenant: string) => any;
-  joinTribe?: (tenant: string, tribeId: string) => Transaction;
-  address?: string;
-};
+  createInstance: () => Transaction;
+  instance: (account: string) => void;
+  addNewTribe: (metadata: any) => Transaction;
+  getUserTribe: (tenant: string, account: string) => any;
+  getTribeData: (tenant: string, id: string) => any;
+  leaveTribe: (tenant: string) => any;
+  totalTribes: (tenant: string) => any;
+  joinTribe: (tenant: string, tribeId: string) => Transaction;
+  address: string;
+} | null;
 export const useTribes = () => {
-  const [contract, setTribesContract] = useState<ContractState>({
-    // createInstance: () => {},
-    // instance: () => {},
-    // addNewTribe: (metadata) => {},
-  });
+  const [contract, setTribesContract] = useState<ContractState>(null);
   const queryClient = useQueryClient();
   const [{ data }] = useAccount();
 

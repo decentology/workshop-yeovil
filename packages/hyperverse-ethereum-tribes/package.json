@@ -2,7 +2,7 @@
   "name": "@decentology/hyperverse-ethereum-tribes",
   "version": "1.0.0",
   "module": "dist/index.ts",
-  "main": "index.ts",
+  "main": "./source/index.ts",
   "license": "MIT",
   "scripts": {
     "test": "hardhat test"

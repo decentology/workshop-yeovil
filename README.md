@@ -6,17 +6,13 @@
 
 
 ## System Requirements
-
----
-
 - [Visual Studio Code](https://code.visualstudio.com/download) (or any IDE for editing JavaScript)
 - [Git](https://git-scm.com/)
 - [Node.js](https://nodejs.org/en/)
-- [Yarn](https://classic.yarnpkg.com/en/docs/install#mac-stable)
+- [Yarn](https://classic.yarnpkg.com/en/docs/install#mac-stable). 
 
 
 ## Installation
----
 To run this project locally:
 
 1. In your terminal run these commands:
@@ -46,8 +42,6 @@ To run this project locally:
 
 
 ## Important Links and File Locations
-
----
 
 Here are some links and locations of some files related to tribes:
 

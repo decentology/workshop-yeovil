@@ -4,8 +4,7 @@ import { useRouter } from 'next/router'
 import { SkynetClient } from 'skynet-js'
 import styles from '../styles/Home.module.css'
 import Loader from '../components/Loader'
-// @ts-ignore
-import { useTribes } from '@hyperverse/hyperverse-ethereum-tribes'
+import { useTribes  } from '@decentology/hyperverse-ethereum-tribes'
 import { useAccount } from '@decentology/hyperverse-ethereum'
 
 import Wallets from '../components/WalletModal'

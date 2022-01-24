@@ -210,12 +210,12 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  width: 90%;
+  width: 70%;
   height: 100%;
 }
 
 .tribe {
-  width: 15rem;
+  width: 90%;
   height: auto;
   margin-top: 2.5rem;
   margin-right: 4rem;
@@ -239,6 +239,47 @@
 .description {
   color: var(--color-theme-white);
   font-size: 1.2rem;
+}
+
+@media screen and (max-width: 1200px) {
+  .tribe {
+    width: 60rem;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .tribe {
+    width: 18rem;
+    margin: 0 auto;
+  }
+
+  .container3{
+    margin: 0;
+    padding: 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .container2 {
+    margin: auto;
+  }
+
+  .tribe {
+    width: 12rem;
+    margin: 0 auto;
+  }
+
+  .text {
+    font-size: 1rem;
+  }
+  .description {
+    color: var(--color-theme-white);
+    font-size: 1rem;
+  }
 }
 
 /* --------------- End of My Tribe Page ---------------- */

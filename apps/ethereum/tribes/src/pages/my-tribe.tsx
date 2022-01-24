@@ -46,6 +46,7 @@ const TribesPage = () => {
                 <h2>{data.name}</h2>
               </div>
             ) : (
+              // eslint-disable-next-line @next/next/no-img-element
               <img
                 src={`https://siasky.net/${data.image}/`}
                 alt={data.name}
@@ -53,8 +54,8 @@ const TribesPage = () => {
               />
             )}
 
-            <div className={styles.text}>
-              <h1>{data.name}</h1>
+            <div>
+              <h1 className={styles.text}>{data.name}</h1>
               <p className={styles.description}>{data.description}</p>
             </div>
           </div>

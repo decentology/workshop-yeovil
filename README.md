@@ -30,7 +30,7 @@ To run this project locally:
     ```
     
 
-2. After cloning, download all the dependencies needed to run the project by running `yarn`. To run the development server you can run our custom script `yarn dev:tribes`
+2. After cloning, download all the dependencies needed to run the project by running `yarn`. To run the development server run our custom script `yarn dev:tribes`
     
     ```bash
     yarn && yarn dev:tribes

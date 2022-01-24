@@ -5,14 +5,14 @@
 - If you have any questions please join the [Decentology Discord.](http://discord.gg/decentology)
 
 
-## System Requirements
+## 💻 System Requirements
 - [Visual Studio Code](https://code.visualstudio.com/download) (or any IDE for editing JavaScript)
 - [Git](https://git-scm.com/)
 - [Node.js](https://nodejs.org/en/)
 - [Yarn](https://classic.yarnpkg.com/en/docs/install#mac-stable). 
 
 
-## Installation
+## 🛠 Installation
 To run this project locally:
 
 1. In your terminal run these commands:
@@ -41,7 +41,7 @@ To run this project locally:
 
 
 
-## Important Links and File Locations
+## 📌 Important Links and File Locations
 
 Here are some links and locations of files related to tribes:
 

@@ -1,4 +1,4 @@
-
+# Preview
 
 # tribes-eth
 
@@ -22,7 +22,7 @@ To run this project locally:
     ```bash
     git clone https://github.com/decentology/workshop-yeovil
     ```
-        cd into that folder
+    cd into that folder
     ```bash
     cd workshop-yeovil
     ```

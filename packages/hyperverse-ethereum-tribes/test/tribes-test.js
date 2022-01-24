@@ -25,7 +25,7 @@ describe('Tribes', async () => {
   
   describe('No Instance', async () => {
     it('Tenant mapping should be empty', async () => {
-      expect(await tribesContract.getTenantTotal()).to.equal(0);
+      expect(await tribesContract.tenantCount()).to.equal(0);
     });
 
     it('Add a Tribe without instance should error', async () => {
@@ -60,11 +60,14 @@ describe('Tribes', async () => {
   describe('With an instance', async () => {
     beforeEach(async () => {
       await tribesContract.connect(cara).createInstance();
+      await tribesContract.connect(alice).createInstance();
+      await tribesContract.connect(bob).createInstance();
       await tribesContract.connect(cara).addNewTribe('metadata');
+      
     });
 
-    it('Should return a Tenant Total of 1', async () => {
-      expect(await tribesContract.getTenantTotal()).to.equal(1);
+    it('Should return a Tenant Total of 3', async () => {
+      expect(await tribesContract.tenantCount()).to.equal(3);
     });
 
     it('Should error on creating another instance using Cara', async () => {

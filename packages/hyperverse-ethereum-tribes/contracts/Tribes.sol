@@ -4,7 +4,6 @@ pragma solidity ^0.8.0;
 import "./hyperverse/IHyperverseModule.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 
-
 contract Tribes is IHyperverseModule {
     using Counters for Counters.Counter;
 
@@ -45,8 +44,6 @@ contract Tribes is IHyperverseModule {
             3479831479814,
             "https://externalLink.net"
         );
-
-        // HARDCODED ADDRESS
         owner = msg.sender;
     }
 
@@ -56,10 +53,6 @@ contract Tribes is IHyperverseModule {
         instance[msg.sender] = true;
         tenantCount.increment();
         emit NewTenantInstance(msg.sender);
-    }
-
-    function getTenantTotal() public view returns (uint256) {
-        return tenantCount.current();
     }
 
     function getState(address tenant) private view hasAnInstance(tenant) returns (Tenant storage) {

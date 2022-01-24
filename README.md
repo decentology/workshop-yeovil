@@ -24,7 +24,7 @@ To run this project locally:
     ```
         cd into that folder
     ```bash
-    cd tribes-eth 
+    cd workshop-yeovil
     ```
     
 

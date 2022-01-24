@@ -17,9 +17,9 @@ Context.displayName = "EthereumTribesContext";
 const Provider: FC<any> = ({ children }) => {
   const ethereum = useEthereum();
   return (
-      <QueryClientProvider client={client}>
-        <Context.Provider value={{}}>{children}</Context.Provider>
-      </QueryClientProvider>
+    <QueryClientProvider client={client}>
+      <Context.Provider value={{}}>{children}</Context.Provider>
+    </QueryClientProvider>
   );
 };
 

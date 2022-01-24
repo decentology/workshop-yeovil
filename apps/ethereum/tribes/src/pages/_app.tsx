@@ -8,7 +8,6 @@ import Ethereum from "@decentology/hyperverse-ethereum";
 import * as Tribes from "@decentology/hyperverse-ethereum-tribes";
 
 //@ts-ignore
-import { useTribes } from "@hyperverse/hyperverse-ethereum-tribes";
 import InnerComponent from "../components/InnerComponent";
 
 function MyApp({ Component, pageProps }: AppProps) {

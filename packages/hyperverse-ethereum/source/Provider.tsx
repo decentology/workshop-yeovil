@@ -50,14 +50,14 @@ const Provider: FC<any> = ({ children, ...props }) => {
       ? new providers.InfuraWebSocketProvider(chainId, infuraId)
       : undefined;
   return (
-      <WagmiProvider
-        autoConnect
-        provider={provider}
-        connectors={connectors}
-        webSocketProvider={webSocketProvider}
-      >
-        {children}
-      </WagmiProvider>
+    <WagmiProvider
+      autoConnect
+      provider={provider}
+      connectors={connectors}
+      webSocketProvider={webSocketProvider}
+    >
+      {children}
+    </WagmiProvider>
   );
 };
 

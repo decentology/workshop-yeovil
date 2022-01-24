@@ -6,60 +6,65 @@
 
 - If you have any questions please join the [Decentology Discord.](http://discord.gg/decentology)
 
-
 ## 💻 System Requirements
+
 - [Visual Studio Code](https://code.visualstudio.com/download) (or any IDE for editing JavaScript)
 - [Git](https://git-scm.com/)
 - [Node.js](https://nodejs.org/en/)
 - [Yarn](https://classic.yarnpkg.com/en/docs/install#mac-stable)
 
-
 ## 🛠 Installation
+
 To run this project locally:
 
 1. In your terminal run these commands:
-    clone the repository
-    ```bash
-    git clone https://github.com/decentology/workshop-yeovil
-    ```
-    cd into that folder
-    ```bash
-    cd workshop-yeovil
-    ```
-    
+   clone the repository
 
-2. Download all the dependencies needed to run the project by running `yarn`. 
-    ```bash
-    yarn
-    ```
-    To run the development server run our custom script 
-    ```bash
-    yarn dev:tribes
-    ```
-    
+   ```bash
+   git clone https://github.com/decentology/workshop-yeovil
+   ```
 
-    Open [http://localhost:3000](http://localhost:3000/) with your browser to see the result. 
+   cd into that folder
 
+   ```bash
+   cd workshop-yeovil
+   ```
 
-##  🏁 Testing & Running the Application
+2. Download all the dependencies needed to run the project by running `yarn`.
+
+   ```bash
+   yarn
+   ```
+
+   To run the development server run our custom script
+
+   ```bash
+   yarn dev:tribes
+   ```
+
+   Open [http://localhost:3000](http://localhost:3000/) with your browser to see the result.
+
+## 🏁 Testing & Running the Application
+
 If you were successful following the Installation application, you should be greeted with the tribes home page that looks like this:
 <img src="./apps/ethereum/tribes/public/tribes-home.png" alt="tribes"/>
 
-
 ### Prerequisities
+
 To be able to interact with the dapp, you need a Metmask Wallet and Rinkeby eth.
 
 1. **Metamask**
 
-    If you do not have a metamask wallet, [here](https://www.surgewomen.io/learn-about-web3/set-up-metamask-wallet) is a guide you can follow on how to set up one.
+   If you do not have a metamask wallet, [here](https://www.surgewomen.io/learn-about-web3/set-up-metamask-wallet) is a guide you can follow on how to set up one.
 
 2. **Rinkeby Faucets**
-    
-    To get some Rinkeby eth here are some available faucets you can request from:
+
+   To get some Rinkeby eth here are some available faucets you can request from:
+
 - https://faucet.paradigm.xyz/
 - https://app.mycrypto.com/faucet
 
-    Or ask us to send you some in our [Discord Server.](http://discord.gg/decentology)
+  Or ask us to send you some in our [Discord Server.](http://discord.gg/decentology)
 
 ## 📌 Important Links and File Locations
 

@@ -3,6 +3,7 @@ import styles from "../styles/Home.module.css";
 import { useState } from "react";
 import { useAccount } from "@decentology/hyperverse-ethereum";
 import Wallets from "./WalletModal";
+
 const shortenHash = (
   hash: string = "",
   charLength: number = 6,

@@ -3,11 +3,9 @@ import { useQuery } from 'react-query'
 import styles from '../styles/Home.module.css'
 import Nav from '../components/Nav'
 import Loader from '../components/Loader'
-// @ts-ignore
 import { useTribes } from '@decentology/hyperverse-ethereum-tribes'
 import { useAccount } from '@decentology/hyperverse-ethereum'
-import { Contract } from 'ethers'
-import { useCallback } from 'react'
+
 
 const getData = async (data: { id: number; txn: string }[]) => {
   return Promise.all(
@@ -39,8 +37,6 @@ const AllTribes = () => {
     },
   )
   const isLoading = allTribesLoading || joinTribeLoading || loadingTribeData
-
-
 
   return (
     <main>

@@ -1,37 +1,37 @@
-import { useRouter } from 'next/router'
-import { useQuery } from 'react-query'
-// @ts-ignore
-import { useTribes } from '@decentology/hyperverse-ethereum-tribes'
-import { useAccount } from '@decentology/hyperverse-ethereum'
-import styles from '../styles/Home.module.css'
-import Nav from '../components/Nav'
-import Loader from '../components/Loader'
+import { useRouter } from "next/router";
+import { useQuery } from "react-query";
+import { useTribes } from "@decentology/hyperverse-ethereum-tribes";
+import { useAccount } from "@decentology/hyperverse-ethereum";
+import styles from "../styles/Home.module.css";
+import Nav from "../components/Nav";
+import Loader from "../components/Loader";
 
 const getTribeData = async (data: string) => {
   const json = JSON.parse(
     // eslint-disable-next-line no-await-in-loop
-    await (await fetch(`https://siasky.net/${data}`)).text(),
-  )
-  return json
-}
+    await (await fetch(`https://siasky.net/${data}`)).text()
+  );
+  return json;
+};
 
 const TribesPage = () => {
-  const router = useRouter()
-  const [{ data: account }] = useAccount()
-  const { Tribe, Leave } = useTribes()
-  const { data: tribeHash, isLoading: tribeDataLoading } = Tribe()
+  const router = useRouter();
+  const [{ data: account }] = useAccount();
+  const { Tribe, Leave } = useTribes();
+  const { data: tribeHash, isLoading: tribeDataLoading } = Tribe();
   const { mutate, isLoading: leaveTribeLoading } = Leave({
-    onSuccess: () => router.push('/'),
-  })
+    onSuccess: () => router.push("/"),
+  });
 
   const { data, isLoading: tribeDataSiaLoading } = useQuery(
-    ['tribeData', tribeHash],
+    ["tribeData", tribeHash],
     () => getTribeData(tribeHash!),
     {
       enabled: !!tribeHash,
-    },
-  )
-  const isLoading = tribeDataLoading || leaveTribeLoading || tribeDataSiaLoading
+    }
+  );
+  const isLoading =
+    tribeDataLoading || leaveTribeLoading || tribeDataSiaLoading;
 
   return (
     <main>
@@ -41,7 +41,7 @@ const TribesPage = () => {
       ) : account && data ? (
         <div className={styles.container2}>
           <div className={styles.container3}>
-            {data.image === 'N/A' ? (
+            {data.image === "N/A" ? (
               <div className={styles.tribeCard}>
                 <h2>{data.name}</h2>
               </div>
@@ -68,7 +68,7 @@ const TribesPage = () => {
           <div className={styles.container2}>
             <button
               className={styles.join}
-              onClick={() => router.push('/all-tribes')}
+              onClick={() => router.push("/all-tribes")}
             >
               Join a Tribe
             </button>
@@ -82,7 +82,7 @@ const TribesPage = () => {
         </div>
       )}
     </main>
-  )
-}
+  );
+};
 
-export default TribesPage
+export default TribesPage;

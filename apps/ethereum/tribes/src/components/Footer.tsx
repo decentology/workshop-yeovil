@@ -1,16 +1,12 @@
-import styles from '../styles/Home.module.css'
-import { useNetwork } from 'wagmi'
-
+import styles from "../styles/Home.module.css";
+import { useNetwork } from "@decentology/hyperverse-ethereum";
 
 const Footer = () => {
-  return null;
-  const [
-    { data: networkData, error: switchNetworkError },
-    switchNetwork,
-  ] = useNetwork()
+  const [{ data: networkData, error: switchNetworkError }, switchNetwork] =
+    useNetwork();
   return (
     <>
-      {switchNetwork && networkData.chain?.name !== 'Rinkeby' && (
+      {switchNetwork && networkData.chain?.name !== "Rinkeby" && (
         <footer>
           <div className={styles.info}>
             <>
@@ -23,7 +19,7 @@ const Footer = () => {
         </footer>
       )}
     </>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

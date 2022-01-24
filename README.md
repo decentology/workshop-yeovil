@@ -43,7 +43,7 @@ To run this project locally:
 
 ## Important Links and File Locations
 
-Here are some links and locations of some files related to tribes:
+Here are some links and locations of files related to tribes:
 
 - Rinkeby Etherscan of the [contract](https://rinkeby.etherscan.io/address/0x410E22b393B3A90953c0677F2282E331580ed45b)
 - [Contract code](https://github.com/decentology/workshop-yeovil/blob/workshop/yeovil/packages/hyperverse-ethereum-tribes/contracts/Tribes.sol) found in the repo

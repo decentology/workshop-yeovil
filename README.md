@@ -11,7 +11,7 @@
 - [Visual Studio Code](https://code.visualstudio.com/download) (or any IDE for editing JavaScript)
 - [Git](https://git-scm.com/)
 - [Node.js](https://nodejs.org/en/)
-- [Yarn](https://classic.yarnpkg.com/en/docs/install#mac-stable). 
+- [Yarn](https://classic.yarnpkg.com/en/docs/install#mac-stable)
 
 
 ## 🛠 Installation
@@ -41,17 +41,25 @@ To run this project locally:
     Open [http://localhost:3000](http://localhost:3000/) with your browser to see the result. 
 
 
-## Testing & Running the application
+##  🏁 Testing & Running the Application
 If you were successful following the Installation application, you should be greeted with the tribes home page that looks like this:
 <img src="./apps/ethereum/tribes/public/tribes-home.png" alt="tribes"/>
 
-To be able to actually do anything on the dapp, you need a Metmask Wallet and some Rinkeby eth.
 
-If you do not have a metamask wallet, [here](https://www.surgewomen.io/learn-about-web3/set-up-metamask-wallet) is a guide you can follow on how to set up one.
+### Prerequisities
+To be able to interact with the dapp, you need a Metmask Wallet and Rinkeby eth.
 
-To get some Rinkeby eth here are some available faucets you can request from:
+1. **Metamask**
+
+    If you do not have a metamask wallet, [here](https://www.surgewomen.io/learn-about-web3/set-up-metamask-wallet) is a guide you can follow on how to set up one.
+
+2. **Rinkeby Faucets**
+    
+    To get some Rinkeby eth here are some available faucets you can request from:
 - https://faucet.paradigm.xyz/
 - https://app.mycrypto.com/faucet
+
+    Or ask us to send you some in our [Discord Server.](http://discord.gg/decentology)
 
 ## 📌 Important Links and File Locations
 
